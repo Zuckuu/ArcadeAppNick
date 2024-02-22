@@ -42,8 +42,9 @@ public partial class Zoo : ContentPage
     public List<String> deck2 = new List<String>();// playerDeck
     public List<Card> hand1 = new List<Card>();// aiHand
     public List<Card> hand2 = new List<Card>();// playerHand
-    public List<String> field1 = new List<String>();//aiField
-    public List<String> field2 = new List<String>();//playerField 
+    public List<Card> field1 = new List<Card>();//aiField
+    public List<Card> field2 = new List<Card>();//playerField 
+
     public int currentTurn = 0;
     public bool cardIsSelected = false;
     public static Random shuffleNum = new Random();
@@ -259,7 +260,8 @@ public partial class Zoo : ContentPage
                                 card.currentLocation[0] = movedTo.location[0]; // move the card
                                 card.currentLocation[1] = movedTo.location[1];
                                 movedTo.square.Source = card.Name + ".png"; // change the image
-                                field2.Add(card.Name); // add to field
+                                Card newCard = new Card(card.Name, card.currentLocation[0], card.currentLocation[1], card.CardIndex);
+                                field2.Add(newCard); // add to field
                                 IndexOfCard = card.CardIndex;
                             }
 
@@ -287,12 +289,15 @@ public partial class Zoo : ContentPage
     public void aiTurn()
     {
         int playerHighestHitpointCard = 0;
-        foreach(string card in field2) // player field
+        Cards currentCard = null;
+        Card playerCard = null;
+        foreach (Card card in field2) // player field
         {
-            Cards currentCard = App.UserRepo.GetCard(card); //get the card data
+            currentCard = App.UserRepo.GetCard(card.Name); //get the card data
             if(currentCard.Hitpoint > playerHighestHitpointCard) //check if the attack is bigger than the player's card
             {
                 playerHighestHitpointCard = currentCard.Hitpoint; //set it to the variable
+                playerCard = card;
             }
         }
 
@@ -322,6 +327,7 @@ public partial class Zoo : ContentPage
 
         }
         aiPlayCard(CardtoPlay);
+        attack(CardtoPlay, playerCard);
     }
 
     public void aiPlayCard(Card card)
@@ -336,7 +342,32 @@ public partial class Zoo : ContentPage
         drawCard(deck1, currentlocation, card.CardIndex, hand1);//add a new card and remove the old one
         fromSquare.square.Source = deck1[0] + ".png";
         toSquare.square.Source = card.Name + ".png";
-        field1.Add(card.Name);
+        Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1], card.CardIndex);
+        field1.Add(newCard);
+    }
+
+    public void attack(Card attack, Card target)
+    {
+        Cards attacker = App.UserRepo.GetCard(attack.Name);
+        Cards defender = App.UserRepo.GetCard(target.Name);
+
+        if (attacker.Attack > defender.Hitpoint)
+        {
+            deleteCard(target);
+        }
+        else if(attacker.Attack <= defender.Hitpoint)
+        {
+            deleteCard(attack);
+            deleteCard(target);
+        }
+
+    }
+
+    public void deleteCard(Card card)
+    {
+        CardBoardSquare square = IdentifyCardBoardSquare(card.currentLocation);
+        square.square.Source = null;
+        square.square.BackgroundColor = Color.FromRgb(255, 255, 255);
     }
 
     public void drawCard(List<String>deck, int[] location, int num, List<Card>hand)
