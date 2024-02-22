@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.TicTacToe">
+    <AbsoluteLayout Background="AliceBlue">
+        <Label
+            Text="Tic Tac Toe!"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5, 0.05"
+            FontSize="50"
+            TextColor="OrangeRed"/>
+        <Label
+            Text="Press a square to start!"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5, 0.3"
+            FontSize="20"
+            TextColor="OrangeRed"/>
+        <Grid
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.6"
+            WidthRequest="300"
+            HeightRequest="300"
+            BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <AbsoluteLayout Grid.Column="0" Grid.Row="0">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square0"
+                    Clicked="Square0_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="1" Grid.Row="0">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square1"
+                    Clicked="Square1_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="2" Grid.Row="0">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square2"
+                    Clicked="Square2_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="0" Grid.Row="1">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square3"
+                    Clicked="Square3_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="1" Grid.Row="1">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square4"
+                    Clicked="Square4_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="2" Grid.Row="1">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square5"
+                    Clicked="Square5_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="0" Grid.Row="2">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square6"
+                    Clicked="Square6_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="1" Grid.Row="2">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square7"
+                    Clicked="Square7_Clicked"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Column="2" Grid.Row="2">
+                <ImageButton
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9"
+                    BackgroundColor="White"
+                    x:Name="Square8"
+                    Clicked="Square8_Clicked"/>
+            </AbsoluteLayout>
+        </Grid>
+        <Label
+            Text=""
+            x:Name="Winner_Label"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5, 0.9"
+            FontSize="Large"
+            TextColor="OrangeRed"/>
+        <Button
+            Text="New Game!"
+            x:Name="New_Game_Button"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.99,0.4,0.075"
+            BackgroundColor="Black"
+            TextColor="OrangeRed"
+            FontSize="20"
+            Clicked="New_Game_Button_Clicked"/>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Legendary"
+             Title="Legendary">
+    <VerticalStackLayout
+     VerticalOptions="Center">
+        <AbsoluteLayout
+         Margin="20"
+         x:Name="Canvas"
+         WidthRequest="100">
+            <StackLayout
+             x:Name="TopPack"
+             BackgroundColor="Gold"
+             WidthRequest="250"
+             HeightRequest="45"
+             AbsoluteLayout.LayoutFlags="XProportional"
+             AbsoluteLayout.LayoutBounds="0.5,50"/>
+            <Image
+             x:Name="Card1"
+             WidthRequest="230"
+             HeightRequest="300"
+             ZIndex="-1"
+             AbsoluteLayout.LayoutFlags="XProportional"
+             AbsoluteLayout.LayoutBounds="0.5,55"/>
+            <Image
+             x:Name="Card2"
+             WidthRequest="230"
+             HeightRequest="300"
+             ZIndex="-1"
+             AbsoluteLayout.LayoutFlags="XProportional"
+             AbsoluteLayout.LayoutBounds="0.5,55"/>
+            <StackLayout
+             x:Name="BottomPack"
+             BackgroundColor="Gold"
+             WidthRequest="250"
+             HeightRequest="300"
+             AbsoluteLayout.LayoutFlags="XProportional"
+             AbsoluteLayout.LayoutBounds="0.5,90"/>
+        </AbsoluteLayout>
+        <Button
+         x:Name="OpenPackButton"
+         WidthRequest="300"
+         Text="Open Pack!"
+         BackgroundColor="LightGoldenrodYellow"
+         BorderColor="Gold"
+         Margin="10"
+         Clicked="OpenPackButton_Clicked"/>
+        <Button
+         x:Name="ViewInventoryButton"
+         WidthRequest="300"
+         Text="View Inventory"
+         BackgroundColor="LightGoldenrodYellow"
+         BorderColor="Gold"
+         Clicked="ViewInventoryButton_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>

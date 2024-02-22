@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Storybook_MainPage"
+             Title="Storybook_MainPage">
+
+    <ScrollView x:Name="scrollview" BackgroundColor="Black">
+        <VerticalStackLayout>
+            <Grid x:Name="Page_1" SizeChanged="Page_1_SizeChanged">
+                <Image
+                    x:Name="Page_1_IMG"
+                    Source="page_1_img.png" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1500"/>
+                <Button 
+                    x:Name="Page_1_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_1_ToggleText"/>
+                <Border
+                    x:Name="Page_1_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_1_Text"
+                        Text="Sir Gallant was a brave and noble knight in the kingdom of Valoria. One morning, he set out on a quest to slay the evil dragon that had been terrorizing the nearby villages. Sir Gallant rode for many days through treacherous forests and across perilous mountains until he reached the dragon's lair, a dark cave on the side of a smoldering volcano. Gripping his sword tightly, Sir Gallant entered the cave. He walked slowly through the winding tunnels, the only light coming from scattered torches on the walls. Suddenly, he heard a thunderous roar up ahead. The dragon appeared, larger and more ferocious than Sir Gallant could have imagined..."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="18"/>
+                </Border>
+                <Button 
+                    x:Name="Page_1_Choice1"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,300,0"
+                    Text="Fight the dragon."
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_1_Choice1_Clicked"/>
+                <Button 
+                    x:Name="Page_1_Choice2"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="300,300,0,0"
+                    Text="Run away!"
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_1_Choice2_Clicked"/>
+            </Grid>
+            <Grid x:Name="Page_2a" IsVisible="false">
+                <Image
+                    x:Name="Page_2a_IMG"
+                    Source="page_2a_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1500"/>
+                <Button 
+                    x:Name="Page_2a_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_2a_ToggleText"/>
+                <Border
+                    x:Name="Page_2a_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_2a_Text"
+                        Text="Sir Gallant felt his heart thunder inside his chest as the formidable dragon loomed over him, its thick scales glistening in the flickering torchlight. The immense beast let out a bone-rattling roar that echoed through the cavernous tunnels. Sir Gallant gripped the hilt of his sword tightly with both hands, the sweat on his palms causing it to slip slightly. Staring down the snarling dragon, Sir Gallant set his stance, raised his sword, and steeled his nerves. His moment of truth had arrived. The brave knight cleared his mind and focused on the task ahead, preparing to make his bold move."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="18"/>
+                </Border>
+                <Button 
+                    x:Name="Page_2a_Choice1"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,300,0"
+                    Text="Charge the dragon!"
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_2a_Choice1_Clicked"/>
+                <Button 
+                    x:Name="Page_2a_Choice2"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="300,300,0,0"
+                    Text="Stand your ground!"
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_2a_Choice2_Clicked"/>
+            </Grid>
+            <Grid x:Name="Page_3a" IsVisible="false">
+                <Image
+                    x:Name="Page_3a_IMG"
+                    Source="page_3a_img.webp" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1500"/>
+                <Button 
+                    x:Name="Page_3a_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_3a_ToggleText"/>
+                <Border
+                    x:Name="Page_3a_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_3a_Text"
+                        Text="Gripping his sword tightly, Sir Gallant let out a bellowing battle cry and charged straight towards the beast. The dragon roared ferociously and unleashed a blast of fire from its mouth. Sir Gallant rolled and dodged the flames, feeling their searing heat radiating off the cave walls. When he was close enough, he swung his sword with all his might. The blade bounced off the dragon's tough armored scales. Undeterred, Sir Gallant continued raining blows upon the dragon, searching for any weak points in its armor. The beast snarled and swiped at him with its razor sharp claws. Sir Gallant ducked behind a rock, narrowly avoiding being ripped to shreds. When the dragon reared back, he saw his chance and dove in, plunging his sword deep into the dragon's chest up to the hilt."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="16"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_3b" IsVisible="false">
+                <Image
+                    x:Name="Page_3b_IMG"
+                    Source="page_3b_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"
+                    MaximumHeightRequest="800"/>
+                <Button 
+                    x:Name="Page_3b_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_3b_ToggleText"/>
+                <Border
+                    x:Name="Page_3b_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_3b_Text"
+                        Text="The knight planted his feet firmly, holding up his sword as the dragon roared. It unleashed a torrent of flames, which Sir Gallant barely deflected with his blade. The blistering heat made his armor grow hot, and sweat dripped into his eyes, blinding him temporarily. Badly injured, the knight struggled to defend himself as the enraged dragon came at him relentlessly. Each of its attacks forced Sir Gallant further back against the cave walls. Flames licked at his heels while claws slashed mercilessly."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="18"/>
+                </Border>
+                <Button 
+                    x:Name="Page_3b_Choice1"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,600,0"
+                    Text="Make a last stand."
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_3b_Choice1_Clicked"/>
+                <Button 
+                    x:Name="Page_3b_Choice2"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="600,300,0,0"
+                    Text="Flee deeper into the tunnels!"
+                    TextColor="Black"
+                    FontSize="12"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_3b_Choice2_Clicked"/>
+                <Button 
+                    x:Name="Page_3b_Choice3"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,0,0"
+                    Text="Submit and give up."
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_3b_Choice3_Clicked"/>
+            </Grid>
+            <Grid x:Name="Page_4a" IsVisible="false">
+                <Image
+                    x:Name="Page_4a_IMG"
+                    Source="page_4a_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_4a_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_4a_ToggleText"/>
+                <Border
+                    x:Name="Page_4a_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_4a_Text"
+                        Text="With a mighty roar, Sir Gallant mustered his last ounce of strength and charged at the dragon, sword pointed forward. He plunged the blade deep into the beast's chest, piercing its heart. The dragon thrashed in agony and collapsed defeated. Mortally wounded himself, Sir Gallant fell beside the vanquished foe and died a hero."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_4b" IsVisible="false">
+                <Image
+                    x:Name="Page_4b_IMG"
+                    Source="page_4b_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_4b_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_4b_ToggleText"/>
+                <Border
+                    x:Name="Page_4b_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_4b_Text"
+                        Text="Seeing an opening, Sir Gallant dove and rolled between the dragon's legs. He sprinted deeper into the twisting tunnels, pursued by flames. After an exhausting chase, the knight finally eluded the dragon. But, battered and lost, he wandered the caves aimlessly until his lonely demise."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_4c" IsVisible="false">
+                <Image
+                    x:Name="Page_4c_IMG"
+                    Source="page_4c_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_4c_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_4c_ToggleText"/>
+                <Border
+                    x:Name="Page_4c_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_4c_Text"
+                        Text="Resigned to his fate, Sir Gallant knelt and bowed his head. The dragon's claws slashed down, crushing the brave knight in a single terrible blow. Though he failed to slay the beast, Sir Gallant was remembered for his courage in the face of impossible odds."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_2b" IsVisible="false">
+                <Image
+                    x:Name="Page_2b_IMG"
+                    Source="page_2b_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"
+                    MaximumHeightRequest="800"/>
+                <Button 
+                    x:Name="Page_2b_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_2b_ToggleText"/>
+                <Border
+                    x:Name="Page_2b_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_2b_Text"
+                        Text="The deafening roar echoed through the tunnels as the enormous dragon emerged. Sir Gallant's mouth went dry and his heart hammered in his chest. As much as his instincts told him to stand and fight, the knight knew in that moment this was a foe beyond his abilities. Sir Gallant ran as fast as his legs could carry him through the shadowy passages, weaving left and right in the maze-like caverns. The thundering footsteps and snarls of the dragon followed close behind. After several heart-pounding minutes, the sounds began to fade into the distance."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="18"/>
+                </Border>
+                <Button 
+                    x:Name="Page_2b_Choice1"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,600,0"
+                    Text="Return to Valoria."
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_2b_Choice1_Clicked"/>
+                <Button 
+                    x:Name="Page_2b_Choice2"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="600,300,0,0"
+                    Text="Leave in shame."
+                    TextColor="Black"
+                    FontSize="12"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_2b_Choice2_Clicked"/>
+                <Button 
+                    x:Name="Page_2b_Choice3"
+                    WidthRequest="200" 
+                    HeightRequest="50" 
+                    VerticalOptions="Center"
+                    Margin="0,300,0,0"
+                    Text="Wander in defeat."
+                    TextColor="Black"
+                    FontSize="15"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Clicked="Page_2b_Choice3_Clicked"/>
+            </Grid>
+            <Grid x:Name="Page_3c" IsVisible="false">
+                <Image
+                    x:Name="Page_3c_IMG"
+                    Source="page_3c_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_3c_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_3c_ToggleText"/>
+                <Border
+                    x:Name="Page_3c_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_3c_Text"
+                        Text="Sir Gallant returns to the kingdom in shame, defeated by the dragon. Though some call him a coward, the king and his loyal followers understand it was an impossible foe. They set to work rallying more knights and resources to someday slay the beast. Sir Gallant keeps his head held high, hoping for a chance to redeem himself."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_3d" IsVisible="false">
+                <Image
+                    x:Name="Page_3d_IMG"
+                    Source="page_3d_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_3d_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_3d_ToggleText"/>
+                <Border
+                    x:Name="Page_3d_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_3d_Text"
+                        Text="Realizing he can never show his face in the kingdom again after fleeing the dragon, Sir Gallant travels far across the seas into exile. He settles in a distant land where no one knows of his failure. Though he misses his home, the knight slowly starts a new life doing good deeds for his adopted people. His once renowned name fades into obscurity."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Page_3e" IsVisible="false">
+                <Image
+                    x:Name="Page_3e_IMG"
+                    Source="page_3e_img.jpg" 
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="1000"/>
+                <Button 
+                    x:Name="Page_3e_ToggleButton"
+                    BackgroundColor="WhiteSmoke" 
+                    WidthRequest="500" 
+                    VerticalOptions="Start"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    Text="Toggle Text"
+                    TextColor="Black"
+                    FontSize="18"
+                    Padding="0"
+                    Clicked="Page_3e_ToggleText"/>
+                <Border
+                    x:Name="Page_3e_TextBox"
+                    WidthRequest="500" 
+                    HeightRequest="350"
+                    BackgroundColor="WhiteSmoke"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 40,0,0,40"
+                    VerticalOptions="Start"
+                    Margin="0, 80, 0, 0">
+                    <Label 
+                        x:Name="Page_3e_Text"
+                        Text="Unable to face anyone after running from the dragon, Sir Gallant wanders the countryside aimlessly. He travels from village to village, camping in the wilderness alone each night with only his thoughts and regrets. The knight helps any locals he meets along the way, but never reveals his former identity. In time, he becomes a drifting legend only whispered about in taverns."
+                        TextColor="Black"
+                        Padding="10"
+                        FontSize="20"/>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

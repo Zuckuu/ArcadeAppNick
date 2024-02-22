@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Inventory"
+             Title="Inventory">
+    <ScrollView>
+        <AbsoluteLayout HeightRequest="5400">
+            <Grid
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1.0,1.0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                    <RowDefinition Height="600"/>
+                </Grid.RowDefinitions>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="0">
+                    <Label
+                    Text="Baby Goat"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="baby_goat.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="BabyGoatLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="0">
+                    <Label
+                    Text="Buffalo"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="buffalo.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="BuffaloLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="1">
+                    <Label
+                    Text="Hyena"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="hyena.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="HyenaLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="1">
+                    <Label
+                    Text="Moose"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="moose.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="MooseLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="2">
+                    <Label
+                    Text="Polar Bear"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="polar_bear.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="PolarBearLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="2">
+                    <Label
+                    Text="Rat"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="rat.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="RatLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="3">
+                    <Label
+                    Text="Seal"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="seal.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="SealLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="3">
+                    <Label
+                    Text="Tiger"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="tiger.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="TigerLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="4">
+                    <Label
+                    Text="Shark"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="shark.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="SharkLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="4">
+                    <Label
+                    Text="Blue Whale"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="blue_whale.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="BlueWhaleLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="5">
+                    <Label
+                    Text="Virus"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="virus.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="VirusLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="5">
+                    <Label
+                    Text="Sea Serpent"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="sea_serpent.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="SeaSerpentLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="6">
+                    <Label
+                    Text="Pterodactyl"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="pterodactyl.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="PterodactylLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="6">
+                    <Label
+                    Text="Vampire Bat"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="vampire_bat.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="VampireBatLabel"/>
+                </AbsoluteLayout> 
+                <AbsoluteLayout Grid.Column="0" Grid.Row="7">
+                    <Label
+                    Text="King Cobra"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="king_cobra.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="KingCobraLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="7">
+                    <Label
+                    Text="King Kong"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="king_kong.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="KingKongLabel"/>
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="8">
+                    <Label
+                    Text="Centipede"
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.015"/>
+                    <Image
+                    Source="centipede.png"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.7"/>
+                    <Label 
+                    Text=""
+                    FontSize="Large"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5,0.9"
+                    x:Name="CentipedeLabel"/>
+                </AbsoluteLayout>
+            </Grid>
+        </AbsoluteLayout>
+    </ScrollView>
+
+</ContentPage>

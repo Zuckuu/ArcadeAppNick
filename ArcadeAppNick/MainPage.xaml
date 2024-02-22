@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.MainPage">
+
+    <ScrollView>
+        <AbsoluteLayout BackgroundColor="Black" HeightRequest="2000" SizeChanged="AbsoluteLayout_SizeChanged">
+            <Grid 
+                AbsoluteLayout.LayoutBounds="0,0, 1.0,1.0"
+                AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="0" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="quiz_splash.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton1"
+                        Clicked="ImageButton1_Clicked"
+                        />
+                    <Label 
+                        Text="Animal Quiz"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        TextColor="GreenYellow"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional" 
+                        />
+                    <Label 
+                        Text="This is a quiz all about animals! Can you beat the high score?"
+                        FontSize="20"
+                        TextColor="GreenYellow"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        x:Name="App_Desc1"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        TextColor="GreenYellow"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="0" HeightRequest="400"  Padding="10">
+                    <ImageButton 
+                        Source="storybook_splash.jpg" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton2"
+                        Clicked="ImageButton2_Clicked"
+                        />
+                    <Label 
+                        Text="Storybook"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Choose your own adventure! Can you complete all the endings?"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc2"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="1" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="platform_splash.jpg" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton3"
+                        Clicked="ImageButton3_Clicked"
+                        />
+                    <Label 
+                        Text="Platform Game"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a platform game! Time your jumps to gain the high score!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc3"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="1" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="mouse_pointer.png" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton4"
+                        Clicked="ImageButton4_Clicked"
+                        />
+                    <Label 
+                        Text="Clicker Game"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="This is a clicker game! How fast can you click?"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc4"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="2" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="question.jpg" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton5"
+                        Clicked="ImageButton5_Clicked"
+                        />
+                    <Label 
+                        Text="Card Pack Sim"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Open packs, win cards!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc5"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="2" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="legendary.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton6"
+                        Clicked="ImageButton6_Clicked"
+                        />
+                    <Label 
+                        Text="Legendary Card Pack"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Open legendary card packs and get rare cards!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc6"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="3" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="weather.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton7"
+                        Clicked="ImageButton7_Clicked"
+                        />
+                    <Label 
+                        Text="Weather App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Check the weather anywhere!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc7"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="3" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="tictactoe.png" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton8"
+                        Clicked="ImageButton8_Clicked"
+                        />
+                    <Label 
+                        Text="TicTacToe App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Can you beat an AI?"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc8"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="0" Grid.Row="4" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="checkers_thumbnail.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton9"
+                        Clicked="ImageButton9_Clicked"
+                        />
+                    <Label 
+                        Text="Checkers App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Play checkers against an AI!"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc9"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                <AbsoluteLayout Grid.Column="1" Grid.Row="4" HeightRequest="400" Padding="10">
+                    <ImageButton 
+                        Source="checkers_thumbnail.webp" 
+                        AbsoluteLayout.LayoutBounds="0,0,1.0,0.8"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        BackgroundColor="DarkOliveGreen"
+                        x:Name="ImageButton10"
+                        Clicked="ImageButton10_Clicked"
+                        />
+                    <Label 
+                        Text="Zoo App"
+                        FontSize="30"
+                        AbsoluteLayout.LayoutBounds="0,0.875,1.0,0.1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                    <Label 
+                        Text="Play The Zoo Card Game"
+                        FontSize="20"
+                        AbsoluteLayout.LayoutBounds="0,0.95,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        x:Name="App_Desc10"
+                        />
+                    <Label 
+                        Text="Rating: 10/10"
+                        FontSize="15"
+                        AbsoluteLayout.LayoutBounds="0,1.025,1.0,0.075"
+                        AbsoluteLayout.LayoutFlags="SizeProportional,PositionProportional"
+                        TextColor="GreenYellow"
+                        />
+                </AbsoluteLayout>
+                
+            </Grid>
+            <Button 
+                Text="Inventory"
+                x:Name="InventoryButton"
+                Clicked="InventoryButton_Clicked"
+                />
+        </AbsoluteLayout>
+    </ScrollView>
+
+</ContentPage>

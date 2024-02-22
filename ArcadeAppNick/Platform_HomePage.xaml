@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Platform_HomePage"
+             Title="Platform_HomePage">
+
+    <Grid SizeChanged="Grid_SizeChanged">
+        <Image 
+            Source="platform_background.webp"
+            Aspect="AspectFill"/>
+        <Label 
+            TextColor="Black"
+            Text="Platform Game!"
+            FontSize="75"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Margin="0, 100, 0, 100"
+            x:Name="Title"/>
+        <Button 
+            Text="Play Game"
+            WidthRequest="200"
+            HeightRequest="75"
+            BackgroundColor="LightGrey"
+            TextColor="Black"
+            FontSize="25"
+            VerticalOptions="End"
+            Margin="0, 0, 0, 300"
+            x:Name="Button1"
+            Clicked="Button1_Clicked"/>
+        <Button 
+            Text="High Scores"
+            WidthRequest="200"
+            HeightRequest="75"
+            BackgroundColor="LightGrey"
+            TextColor="Black"
+            FontSize="25"
+            VerticalOptions="End"
+            Margin="0, 0, 0, 200"
+            x:Name="Button2"/>
+        <Button 
+            Text="Go Back"
+            WidthRequest="200"
+            HeightRequest="75"
+            BackgroundColor="LightGrey"
+            TextColor="Black"
+            FontSize="25"
+            VerticalOptions="End"
+            Margin="0, 0, 0, 100"
+            x:Name="Button3"
+            Clicked="Button3_Clicked"/>
+    </Grid>
+</ContentPage>

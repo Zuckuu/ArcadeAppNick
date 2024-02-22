@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Clicker_MainPage"
+             Title="Clicker_MainPage">
+    
+    <AbsoluteLayout BackgroundColor="Beige">
+        <HorizontalStackLayout
+        x:Name="start_Layout"
+        Spacing="5"
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds=".5,.5,1,.1"
+        HorizontalOptions="Center">
+            <Entry x:Name="username_Entry" PlaceholderColor="LightGrey" Placeholder="Enter Your Name to Start!" BackgroundColor="grey"/>
+            <Button x:Name="start_Button" Clicked="start_Button_Clicked" BorderColor="blue" BackgroundColor="LightBlue" Text="Start" TextColor="blue"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout 
+        x:Name="game_board"
+        IsEnabled="False"
+        IsVisible="false"
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds=".5,.6,.8,.6"
+        BackgroundColor="Beige"
+        Spacing="50"
+        HorizontalOptions="CenterAndExpand">
+            <VerticalStackLayout
+            Margin="10"
+            VerticalOptions="CenterAndExpand">
+                <Label x:Name="username_Label" Text="Hello" HorizontalTextAlignment="Center" BackgroundColor="Beige" FontSize="30" Margin="10"/>
+                <ImageButton 
+                x:Name="image_Clicker"
+                Clicked="image_Clicker_Clicked"
+                Source="money_bag.png"  
+                HorizontalOptions="Center"
+                BackgroundColor="Beige"
+                WidthRequest="250"/>
+                <Label x:Name="money_Label" Text="$00" HorizontalTextAlignment="Center" FontSize="45"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="coin_pouch" VerticalOptions="Start" HorizontalOptions="Center" Margin="10" Spacing="20"/>
+            <VerticalStackLayout Spacing="20" Margin="10" VerticalOptions="CenterAndExpand">
+                <Button BackgroundColor="SandyBrown" Text="Clicker Upgrade: Lv.1 Cost: $5" WidthRequest="500" HeightRequest="60" BorderColor="Brown" TextColor="Brown" FontSize="20"
+                    x:Name="clicker_upgrade" Clicked="clicker_upgrade_Clicked"/>
+                <Button BackgroundColor="SandyBrown" Text="Passive Income: Lv.0 Cost: $100" WidthRequest="500" HeightRequest="60" BorderColor="Brown" TextColor="Brown" FontSize="20"
+                    x:Name="passive_upgrade" Clicked="passive_upgrade_Clicked"/>
+                <Button BackgroundColor="SandyBrown" Text="Interest Upgrade: Lv.1 Cost: $500" WidthRequest="500" HeightRequest="60" BorderColor="Brown" TextColor="Brown" FontSize="20"
+                    x:Name="interest_upgrade" Clicked="interest_upgrade_Clicked"/>
+                <Button BackgroundColor="SandyBrown" Text="Buy Coin! Cost: $200,000" WidthRequest="500" HeightRequest="60" BorderColor="Brown" TextColor="Brown" FontSize="20"
+                    x:Name="buy_coin" Clicked="buy_coin_Clicked"/>
+                <Button BackgroundColor="SandyBrown" Text="Bank Tier Upgrade: Lv.1 Cost: 1 Coin" WidthRequest="500" HeightRequest="60" BorderColor="Brown" TextColor="Brown" FontSize="20"
+                    x:Name="tier_upgrade" Clicked="tier_upgrade_Clicked"/>
+                <Grid ColumnSpacing="10" BackgroundColor="SandyBrown" Padding="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label BackgroundColor="green" Grid.Row="0" Grid.Column="0" Text="Tier 1"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                       x:Name="tier1_box"/>
+                    <Label BackgroundColor="red" Grid.Row="0" Grid.Column="1" Text="Tier 2"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                       x:Name="tier2_box"/>
+                    <Label BackgroundColor="red" Grid.Row="0" Grid.Column="2" Text="Tier 3"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                       x:Name="tier3_box"/>
+                    <Label BackgroundColor="red" Grid.Row="0" Grid.Column="3" Text="Tier 4"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                       x:Name="tier4_box"/>
+                </Grid>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </AbsoluteLayout>
+</ContentPage>

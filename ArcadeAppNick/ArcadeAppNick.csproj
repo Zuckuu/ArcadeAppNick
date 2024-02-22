@@ -1,0 +1,182 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ArcadeAppNick</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>ArcadeAppNick</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.arcadeappnick</ApplicationId>
+		<ApplicationIdGuid>47a1c361-6e76-4fa2-8817-a6a869361179</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\baby_goat.png" />
+	  <None Remove="Resources\Images\black_piece.png" />
+	  <None Remove="Resources\Images\blue_whale.png" />
+	  <None Remove="Resources\Images\buffalo.png" />
+	  <None Remove="Resources\Images\centipede.png" />
+	  <None Remove="Resources\Images\checkers_thumbnail.webp" />
+	  <None Remove="Resources\Images\clicker_background.jpeg" />
+	  <None Remove="Resources\Images\cloud_enemy.png" />
+	  <None Remove="Resources\Images\croc.jpg" />
+	  <None Remove="Resources\Images\crow.jpg" />
+	  <None Remove="Resources\Images\eagle.jpg" />
+	  <None Remove="Resources\Images\giraffe.jpg" />
+	  <None Remove="Resources\Images\grid_sound.mp3" />
+	  <None Remove="Resources\Images\homebackground.png" />
+	  <None Remove="Resources\Images\homepagebackground.jpg" />
+	  <None Remove="Resources\Images\hyena.png" />
+	  <None Remove="Resources\Images\jaguar.jpg" />
+	  <None Remove="Resources\Images\king_cobra.png" />
+	  <None Remove="Resources\Images\king_kong.png" />
+	  <None Remove="Resources\Images\legendary.webp" />
+	  <None Remove="Resources\Images\moose.png" />
+	  <None Remove="Resources\Images\mouse_pointer.png" />
+	  <None Remove="Resources\Images\page_1_img.png" />
+	  <None Remove="Resources\Images\page_2a_img.jpg" />
+	  <None Remove="Resources\Images\page_2b_img.jpg" />
+	  <None Remove="Resources\Images\page_3a_img.webp" />
+	  <None Remove="Resources\Images\page_3b_img.jpg" />
+	  <None Remove="Resources\Images\page_3c_img.jpg" />
+	  <None Remove="Resources\Images\page_3d_img.jpg" />
+	  <None Remove="Resources\Images\page_3e_img.jpg" />
+	  <None Remove="Resources\Images\page_4a_img.jpg" />
+	  <None Remove="Resources\Images\page_4b_img.jpg" />
+	  <None Remove="Resources\Images\page_4c_img.jpg" />
+	  <None Remove="Resources\Images\penguin.jpg" />
+	  <None Remove="Resources\Images\platform_background.webp" />
+	  <None Remove="Resources\Images\platform_splash.jpg" />
+	  <None Remove="Resources\Images\polar_bear.png" />
+	  <None Remove="Resources\Images\pterodactyl.png" />
+	  <None Remove="Resources\Images\rain.jpg" />
+	  <None Remove="Resources\Images\rat.png" />
+	  <None Remove="Resources\Images\red_piece.png" />
+	  <None Remove="Resources\Images\seal.png" />
+	  <None Remove="Resources\Images\sea_serpent.png" />
+	  <None Remove="Resources\Images\shark.png" />
+	  <None Remove="Resources\Images\shrew.jpg" />
+	  <None Remove="Resources\Images\squid.jpg" />
+	  <None Remove="Resources\Images\tiger.png" />
+	  <None Remove="Resources\Images\vampire_bat.png" />
+	  <None Remove="Resources\Images\virus.png" />
+	  <None Remove="Resources\Images\weather.webp" />
+	  <None Remove="Resources\Images\weather_icon.jpg" />
+	  <None Remove="Resources\Images\wind.jpg" />
+	  <None Remove="Resources\Images\wolf.jpg" />
+	  <None Remove="Resources\Images\zebra.jpg" />
+	  <None Remove="Resources\Raw\game_over.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Raw\grid_sound.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Zoo.xaml.cs">
+	    <DependentUpon>Zoo.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Checkers.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Clicker_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Clicker_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Inventory.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Legendary.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Zoo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Platform_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Platform_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Quiz_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Quiz_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Signup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Simulator.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Storybook_HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Storybook_MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TicTacToe.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Weather.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

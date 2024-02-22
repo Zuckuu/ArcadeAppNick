@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Quiz_MainPage"
+             Title="Quiz_MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout BackgroundColor="AliceBlue" Spacing="50" Padding="20">
+            <Label 
+            Text="Animal Quiz" 
+            TextColor="Black" 
+            HorizontalOptions="Center" 
+            FontSize="50"/>
+            <VerticalStackLayout WidthRequest="600" BackgroundColor="red">
+                <Label 
+                    Text="What is the largest animal in the world?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="giraffe.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="140" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Lion" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Tiger" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Elephant" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Blue Whale" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question1"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="Which bird is known for its ability to mimic the human speech?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="crow.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Sparrow" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Crow" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Parrot" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Pigeon" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question2"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="Which animal is known for its black and white stripes and is native to Africa?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="zebra.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Zebra" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Cheetah" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Lion" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Rhinoceros" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question3"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="What is the largest species of penguin?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="penguin.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Emperor Penguin" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Adelie Penguin" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="King Penguin" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Chinstrap Penguin" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question4"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="What is a group of wolves called?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="wolf.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Herd" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Flock" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Pack" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Colony" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question5"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="Which reptile is known for changing color to match its surroundings?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="croc.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Turtle" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Iguana" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Crocodile" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Chameleon" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question6"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="Which marine creature is known for its eight long tentacles and a soft, bag-like body? "
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="squid.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Octopus" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Jellyfish" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Squid" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Seahorse" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question7"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="What is the national bird of the United States? "
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="eagle.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Bald Eagle" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Red Tailed Hawk" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="American Robin" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Wild Turkey" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question8"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="Which big cat is known for its distinctive roar that can be heard up to 5 miles away?"
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="jaguar.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Leopard" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Cheetah" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Jaguar" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Lion" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question9"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout WidthRequest="600"  BackgroundColor="red">
+                <Label 
+                    Text="What is the smallest mammal in the world? "
+                    TextColor="Black"
+                    FontSize="30"
+                    Padding="5"
+                    HorizontalOptions="Center"/>
+                <Image 
+                    Source="shrew.jpg"
+                    MaximumWidthRequest="500"
+                    MaximumHeightRequest="250"/>
+                <Grid BackgroundColor="Yellow" WidthRequest="500" HeightRequest="150" ColumnSpacing="20" Padding="20" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="0"  HeightRequest="50" Text="Mouse" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="0"  HeightRequest="50" Text="Shrew" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="0" Grid.Column="1" HeightRequest="50" Text="Bat" TextColor="White"  />
+                    <Button BackgroundColor="Black" Grid.Row="1" Grid.Column="1"  HeightRequest="50" Text="Hamster" TextColor="White" />
+                </Grid>
+                <Entry 
+                    x:Name="question10"
+                    Margin="0, 8, 0, 8"
+                    WidthRequest="500"
+                    HeightRequest="20"
+                    Placeholder="Type in answer..."
+                    PlaceholderColor="DarkGrey"
+                    BackgroundColor="AliceBlue"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+            <Button 
+                x:Name="Submit_Button"
+                Clicked="Button_Clicked"
+                Text="Submit"
+                BackgroundColor="Green"
+                TextColor="Black"
+                WidthRequest="200"
+                FontSize="30"
+                Margin="0,0,30,0"
+                />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

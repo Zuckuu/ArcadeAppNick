@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcadeAppNick.Weather"
+             xmlns:vm="clr-namespace:ArcadeAppNick.Models"
+             x:DataType="vm:WeatherInfo"
+             Title="Weather">
+    <AbsoluteLayout BackgroundColor="#01BFFF">
+        <Label 
+            Text="Current Weather"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.005"/>
+        <Entry 
+            Placeholder="City"
+            TextColor="Black"
+            FontSize="15"
+            BackgroundColor="#F1F1F1"
+            Text="{Binding City}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.05,0.4,0.05"/>
+        <Entry 
+            Placeholder="State/Country"
+            TextColor="Black"
+            BackgroundColor="#F1F1F1"
+            Text="{Binding State_country}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.125, 0.4, 0.05"/>
+        <Button 
+            Text="Fetch"
+            TextColor="Black"
+            FontSize="25"
+            Command="{Binding FetchWeatherInformationCommand}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.5,0.2,0.3,0.06"
+            Clicked="Button_Clicked"/>
+        <Label
+            Text="{Binding Location}"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.35"/>
+        <Image 
+            Source="{Binding Weather_icon}"
+            BackgroundColor="DarkGrey"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.7,0.435"/>
+        <Label 
+            Text="{Binding Temperature}"
+            FontSize="50"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.41"/>
+        <Label
+            Text="{Binding Feelslike}"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.475"/>
+        <Label
+            Text="{Binding Cloudcover}"
+            FontSize="15"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.53"/>
+        <Image 
+            x:Name="WindImage"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.7,0.65,60,60"/>
+        <Label 
+            Text="{Binding Wind_speed}"
+            FontSize="40"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.6"/>
+        <Label
+            Text="{Binding Wind_degree}"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.665"/>
+        <Image 
+            x:Name="RainImage"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.7,0.85,60,60"/>
+        <Label
+            Text="{Binding Precipitation}"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.8"/>
+        <Label
+            Text="{Binding Humidity}"
+            FontSize="20"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.3,0.865"/>
+        <Label
+            Text="{Binding Visibilty}"
+            FontSize="15"
+            TextColor="Black"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.5,0.95"/>
+    </AbsoluteLayout>
+</ContentPage>
