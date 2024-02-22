@@ -234,37 +234,44 @@ public partial class Zoo : ContentPage
         return null;
     }
 
-    public void moveCard(CardBoardSquare movedTo)
+    public void userTurn(CardBoardSquare movedTo)
     {
         movedTo.isActive = true;
         int IndexOfCard = 0;
-        //movedTo.square.BackgroundColor = Color.FromRgb(0, 0, 0);
-        
+       
         foreach(CardBoardSquare boardSquare in CardBoard){
 
             if (boardSquare.choosingForMove)
             {
-                int[] fromLocation = boardSquare.location;
-
-                foreach(Card card in hand2)
+                if (boardSquare.location[1] == 2)
                 {
-                    if (card.currentLocation[0] == fromLocation[0] && card.currentLocation[1] == fromLocation[1])
-                    {
-                        card.currentLocation[0] = movedTo.location[0]; // move the card
-                        card.currentLocation[1] = movedTo.location[1];
-                        movedTo.square.Source = card.Name + ".png"; // change the image
-                        field2.Add(card.Name); // add to field
-                        IndexOfCard = card.CardIndex;
-                    }
-                    
+                    //attack or something
                 }
+                else if (boardSquare.location[1] == 3)
 
-                drawCard(deck2, fromLocation, IndexOfCard);
-                boardSquare.square.Source = deck2[0] + ".png";
-                boardSquare.square.BackgroundColor = null;
-                boardSquare.isActive = false;
-                boardSquare.choosingForMove = false;
-                boardSquare.square.Scale = 1;
+                    {
+                        int[] fromLocation = boardSquare.location;
+
+                        foreach (Card card in hand2)
+                        {
+                            if (card.currentLocation[0] == fromLocation[0] && card.currentLocation[1] == fromLocation[1])
+                            {
+                                card.currentLocation[0] = movedTo.location[0]; // move the card
+                                card.currentLocation[1] = movedTo.location[1];
+                                movedTo.square.Source = card.Name + ".png"; // change the image
+                                field2.Add(card.Name); // add to field
+                                IndexOfCard = card.CardIndex;
+                            }
+
+                        }
+
+                        drawCard(deck2, fromLocation, IndexOfCard, hand2);
+                        boardSquare.square.Source = deck2[0] + ".png";
+                        boardSquare.square.BackgroundColor = null;
+                        boardSquare.isActive = false;
+                        boardSquare.choosingForMove = false;
+                        boardSquare.square.Scale = 1;
+                    }
             }
 
         }
@@ -273,13 +280,82 @@ public partial class Zoo : ContentPage
         {
             boardSquare.RemoveEvents();
         }
+
+        aiTurn();
     }
 
-    public void drawCard(List<String>deck, int[] location, int num)
+    public void aiTurn()
+    {
+        int playerHighestHitpointCard = 0;
+        foreach(string card in field2) // player field
+        {
+            Cards currentCard = App.UserRepo.GetCard(card); //get the card data
+            if(currentCard.Hitpoint > playerHighestHitpointCard) //check if the attack is bigger than the player's card
+            {
+                playerHighestHitpointCard = currentCard.Hitpoint; //set it to the variable
+            }
+        }
+
+        List<Card> PlayableCardList = new List<Card>();
+
+        foreach(Card card in hand1)//ai hand 
+        {
+            Cards aiPlayableCard = App.UserRepo.GetCard(card.Name);// get the card data
+            if(aiPlayableCard.Attack > playerHighestHitpointCard) // check if aiCard's attack is higher than hp
+            {
+                PlayableCardList.Add(card); //add card to a list
+            }else if(aiPlayableCard.Hitpoint > playerHighestHitpointCard) //check if aiCard's hp is higher
+            {
+                PlayableCardList.Add(card); //add card to a list
+            }
+        }
+
+        Card CardtoPlay = null; // empty card
+
+        foreach (Card card in PlayableCardList) 
+        {
+            CardtoPlay = card; // set a card to it
+            if ((App.UserRepo.GetCard(CardtoPlay.Name).Attack) >= (App.UserRepo.GetCard(card.Name).Attack)) //compare the 2 card attack
+            {
+                CardtoPlay = card; //set it to CardtoPlay if card attack is lower, we dont want to play the strongest card
+            }
+
+        }
+        aiPlayCard(CardtoPlay);
+    }
+
+    public void aiPlayCard(Card card)
+    {
+        int[] moveUp = new int[2] { card.currentLocation[0], card.currentLocation[1] + 1 };
+        int[] currentlocation = new int[2] { card.currentLocation[0], card.currentLocation[1]};
+        CardBoardSquare fromSquare = IdentifyCardBoardSquare(currentlocation);
+        CardBoardSquare toSquare = IdentifyCardBoardSquare(moveUp);
+
+        card.currentLocation = toSquare.location; //move the card
+
+        drawCard(deck1, currentlocation, card.CardIndex, hand1);//add a new card and remove the old one
+        fromSquare.square.Source = deck1[0] + ".png";
+        toSquare.square.Source = card.Name + ".png";
+        field1.Add(card.Name);
+    }
+
+    public void drawCard(List<String>deck, int[] location, int num, List<Card>hand)
     {
         Card newCard = new Card(deck[0],location[0], location[1], num);
-        hand2.RemoveAt(num);
-        hand2.Add(newCard);
+        hand.RemoveAt(num);
+        hand.Add(newCard);
+    }
+
+    public CardBoardSquare IdentifyCardBoardSquare(int[] location)
+    {
+        foreach (CardBoardSquare square in CardBoard)
+        {
+            if (square.location[0] == location[0] && square.location[1] == location[1])
+            {
+                return square;
+            }
+        }
+        return null;
     }
 }
 
@@ -295,31 +371,6 @@ public class Card
         currentLocation[1] = j;//row
         CardIndex = num;
     }
-
-    public int[] GetPossibleMoves(string player, Zoo p, int[] move, CardBoardSquare sq, string moveID, int moveIndex = 0)
-    {
-       
-        if (player == "user")
-        {
-            if (currentLocation[1] == 3) //check if the card is in hand
-            {
-                //add to the field
-              
-            }
-            else if (currentLocation[1] == 2)//check if the card is in the field
-            {
-
-            }
-
-        }
-        else if (player == "ai")
-        {
-            
-        }
-        return move;
-    }
-
-   
 }
 
 public class CardBoardSquare
@@ -390,7 +441,7 @@ public class CardBoardSquare
                 currentState = 0;
                 choosingForMove = false;
                 p.cardIsSelected = false;
-                p.moveCard(this);
+                p.userTurn(this);
             }
         };
         square.Clicked += DoMove;
