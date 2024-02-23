@@ -5,13 +5,13 @@
              Title="Zoo">
 
     <AbsoluteLayout
-        BackgroundColor="ForestGreen">
+        BackgroundColor="RosyBrown">
 
         <Grid
             x:Name="Gameboard"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="0.5,0.5"
-            WidthRequest="1200"
+            WidthRequest="1000"
             HeightRequest="890"
             RowSpacing="15"
             ColumnSpacing="15">
@@ -29,11 +29,33 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
         </Grid>
+        <VerticalStackLayout 
+            VerticalOptions="Center"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0.5">
+            <Button Text="Ai Health: 00" 
+                    TextColor="white" 
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    BackgroundColor="LightPink"
+                    x:Name="aiHealth"/>
+            <Button Text="End Turn" 
+                    WidthRequest="100" 
+                    HeightRequest="50" 
+                    BackgroundColor="DarkRed" 
+                    TextColor="white" 
+                    Clicked="endUserTurn"
+                    Margin="30"/>
+            <Button Text="Player Health: 00" 
+                    TextColor="white" 
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    BackgroundColor="LightGreen"
+                    x:Name="playerHealth"/>
+        </VerticalStackLayout>
     </AbsoluteLayout>
    
 </ContentPage>

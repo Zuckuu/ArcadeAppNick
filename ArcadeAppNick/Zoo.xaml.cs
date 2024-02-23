@@ -2,6 +2,7 @@ using ArcadeAppNick.Models;
 using Microsoft.Maui.ApplicationModel.DataTransfer;
 using SQLite;
 using System.Collections.Generic;
+using static SQLite.SQLite3;
 
 
 namespace ArcadeAppNick;
@@ -13,6 +14,8 @@ public partial class Zoo : ContentPage
         "baby_goat",
         "hyena",
         "moose",
+        "zebra",
+        "fox",
     };
 
     List<String> rareList = new List<String>() 
@@ -35,15 +38,16 @@ public partial class Zoo : ContentPage
         "pterodactyl"
     };
 
+    public List<CardBoardSquare> CardBoard = new List<CardBoardSquare>(); //board for square
 
-    public List<CardBoardSquare> CardBoard = new List<CardBoardSquare>();
+    public List<Card> aiDeck = new List<Card>();
+    public List<Card> playerDeck = new List<Card>();
 
-    public List<String> deck1 = new List<String>();// aiDeck
-    public List<String> deck2 = new List<String>();// playerDeck
-    public List<Card> hand1 = new List<Card>();// aiHand
-    public List<Card> hand2 = new List<Card>();// playerHand
-    public List<Card> field1 = new List<Card>();//aiField
-    public List<Card> field2 = new List<Card>();//playerField 
+    public List<Card> aiHand = new List<Card>();
+    public List<Card> playerHand = new List<Card>();
+
+    public List<Card> aiField = new List<Card>();
+    public List<Card> playerField = new List<Card>();
 
     public int currentTurn = 0;
     public bool cardIsSelected = false;
@@ -54,12 +58,10 @@ public partial class Zoo : ContentPage
         AddDatabase();
 
     }
-
-
     public void createBoard()
     {
         int rows = 4;
-        int columns = 7;
+        int columns = 5;
 
         for (int i = 0; i < columns; i++)
         {
@@ -76,21 +78,21 @@ public partial class Zoo : ContentPage
                 ImageButton sq = new ImageButton()
                 {
                     BackgroundColor = color,
-                };  
+                };
 
                 if (j == 0)//adding to aihand
                 {
-                    sq.Source = deck1[i] + ".png";
-                    Card newCard = new Card(deck1[i],i, j, i);
-                    hand1.Add(newCard); //add card to hand
-                    deck1.RemoveAt(i); //remove card from deck
+                    sq.Source = aiDeck[i].Name + ".png";
+                    Card newCard = new Card(aiDeck[i].Name,i, j, i);
+                    aiHand.Add(newCard); //add card to hand
+                    aiDeck.RemoveAt(i); //remove card from deck
                 }
                 if(j == 3)//adding to player
                 {
-                    sq.Source = deck2[i] + ".png";
-                    Card newCard = new Card(deck2[i], i, j, i);
-                    hand2.Add(newCard);
-                    deck2.RemoveAt(i);
+                    sq.Source = playerDeck[i].Name + ".png";
+                    Card newCard = new Card(playerDeck[i].Name, i, j, i);
+                    playerHand.Add(newCard);
+                    playerDeck.RemoveAt(i);
                 }
                 Gameboard.Add(sq, i, j);
                 CardBoard.Add(new CardBoardSquare(this, sq, i, j));
@@ -98,22 +100,23 @@ public partial class Zoo : ContentPage
         }
 
     }
-
-    public void populateDeck()
+    public void populateDeck(List<Card> deck)
     {
-        int common = 15;
-        int rare = 10;
-        int legendary = 5;
+        int common = 15 , rare = 10, legendary = 5;
+        int deckIndexNum = 0;
         Random rand = new Random();
 
-        deck2.Clear();
+
+        deck.Clear();
 
         for(int c = 0; c < common; c++)
         {
             int randNum = rand.Next(commonList.Count);
             string name = commonList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            deck2.Add(result.Name);
+            Card newCard = new Card(result.Name, 0, 0, 0);
+            deck.Add(newCard);
+            deckIndexNum++;
         }
 
         for (int r = 0; r < rare; r++)
@@ -121,7 +124,9 @@ public partial class Zoo : ContentPage
             int randNum = rand.Next(rareList.Count);
             string name = rareList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            deck2.Add(result.Name);
+            Card newCard = new Card(result.Name, 0, 0, 0);
+            deck.Add(newCard);
+            deckIndexNum++;
         }
 
         for (int l = 0; l < legendary; l++)
@@ -129,49 +134,14 @@ public partial class Zoo : ContentPage
             int randNum = rand.Next(legendaryList.Count);
             string name = legendaryList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            deck2.Add(result.Name);
+            Card newCard = new Card(result.Name, 0, 0, 0);
+            deck.Add(newCard);
+            deckIndexNum++;
         }
 
-        Shuffle(deck2);//shuffle the deck
+        Shuffle(deck);//shuffle the deck
     }
-
-    public void populateAiDeck()
-    {
-        int common = 15;
-        int rare = 10;
-        int legendary = 5;
-        Random rand = new Random();
-
-        deck1.Clear();
-
-        for (int c = 0; c < common; c++)
-        {
-            int randNum = rand.Next(commonList.Count);
-            string name = commonList[randNum];
-            Cards result = App.UserRepo.GetCard(name);
-            deck1.Add(result.Name);
-        }
-
-        for (int r = 0; r < rare; r++)
-        {
-            int randNum = rand.Next(rareList.Count);
-            string name = rareList[randNum];
-            Cards result = App.UserRepo.GetCard(name);
-            deck1.Add(result.Name);
-        }
-
-        for (int l = 0; l < legendary; l++)
-        {
-            int randNum = rand.Next(legendaryList.Count);
-            string name = legendaryList[randNum];
-            Cards result = App.UserRepo.GetCard(name);
-            deck1.Add(result.Name);
-        }
-
-        Shuffle(deck1);//shuffle the deck
-    }
-
-    public List<string>Shuffle(List<string> deck) 
+    public List<Card>Shuffle(List<Card> deck) 
     {
         for(int x = deck.Count-1; x > 0; x--)
         {
@@ -182,7 +152,6 @@ public partial class Zoo : ContentPage
         }
         return deck;
     }
-
     public void AddDatabase()
     {
 
@@ -192,6 +161,10 @@ public partial class Zoo : ContentPage
         App.UserRepo.AddCard("baby_goat", "baby_goat.png", 5, 10, "common");
         App.UserRepo.AddCard("hyena","hyena.png", 35, 15, "common");
         App.UserRepo.AddCard("moose", "moose.png", 15, 25, "common");
+        App.UserRepo.AddCard("fox", "fox.png", 20, 25, "common");
+        App.UserRepo.AddCard("zebra", "zebra.png", 10, 20, "common");
+
+        //add horse and wolf
 
         //rare
         App.UserRepo.AddCard("buffalo","buffalo.png", 10, 30, "rare");
@@ -210,21 +183,20 @@ public partial class Zoo : ContentPage
         App.UserRepo.AddCard("pterodactyl","pterodactyl.png", 75, 60, "legendary");
         App.UserRepo.AddCard("sea_serpent","seap_serpent", 80, 120, "legendary");
 
-        populateDeck();
-        populateAiDeck();
-        createBoard();
+        populateDeck(aiDeck); //populate the decks
+        populateDeck(playerDeck);
+        createBoard(); //create the board with cards in hand
     }
-
     public Card IdentifyCard(int[] location)
     {
-        foreach (Card card in hand2)
+        foreach (Card card in playerHand)
         {
             if (card.currentLocation[0] == location[0] && card.currentLocation[1] == location[1])
             {
                 return card;
             }
         }
-        foreach (Card piece in hand1)
+        foreach (Card piece in aiHand)
         {
             if (piece.currentLocation[0] == location[0] && piece.currentLocation[1] == location[1])
             {
@@ -235,148 +207,158 @@ public partial class Zoo : ContentPage
         return null;
     }
 
-    public void userTurn(CardBoardSquare movedTo)
+    public void playerMoveCard(CardBoardSquare newSquare) 
     {
-        movedTo.isActive = true;
-        int IndexOfCard = 0;
-       
-        foreach(CardBoardSquare boardSquare in CardBoard){
-
-            if (boardSquare.choosingForMove)
+        newSquare.isActive = true; //this square will now be active
+        Card removeCard = null; //this will be a card that gets remove
+        int[] fromLocation = new int[2];
+        foreach(CardBoardSquare boardCard in CardBoard)
+        {
+            if (boardCard.chosenForMove)
             {
-                if (boardSquare.location[1] == 2)
+                fromLocation = boardCard.location; //set the past location to an int array
+
+                foreach(Card card in playerHand)
                 {
-                    //attack or something
-                }
-                else if (boardSquare.location[1] == 3)
-
+                    //find the card with the same location
+                    if (card.currentLocation[0] == fromLocation[0] && card.currentLocation[1] == fromLocation[1])
                     {
-                        int[] fromLocation = boardSquare.location;
+                        card.currentLocation[0] = newSquare.location[0];//move the card
+                        card.currentLocation[1] = newSquare.location[1];
 
-                        foreach (Card card in hand2)
-                        {
-                            if (card.currentLocation[0] == fromLocation[0] && card.currentLocation[1] == fromLocation[1])
-                            {
-                                card.currentLocation[0] = movedTo.location[0]; // move the card
-                                card.currentLocation[1] = movedTo.location[1];
-                                movedTo.square.Source = card.Name + ".png"; // change the image
-                                Card newCard = new Card(card.Name, card.currentLocation[0], card.currentLocation[1], card.CardIndex);
-                                field2.Add(newCard); // add to field
-                                IndexOfCard = card.CardIndex;
-                            }
+                        newSquare.square.Source = card.Name + ".png"; //set the image to new square
 
-                        }
-
-                        drawCard(deck2, fromLocation, IndexOfCard, hand2);
-                        boardSquare.square.Source = deck2[0] + ".png";
-                        boardSquare.square.BackgroundColor = null;
-                        boardSquare.isActive = false;
-                        boardSquare.choosingForMove = false;
-                        boardSquare.square.Scale = 1;
+                        playerField.Add(card);//add the card to field
+                        removeCard = card; //set the card for removal from hand
                     }
+                }
+
+
+                boardCard.square.Source = playerDeck[0].Name + ".png"; //add a new card img to the old spot
+                boardCard.square.Scale = 1; //scale back
+                boardCard.chosenForMove = false;
             }
 
         }
-
-        foreach (CardBoardSquare boardSquare in CardBoard)
+        foreach(CardBoardSquare boardCard in CardBoard) //remove all event in on the board
         {
-            boardSquare.RemoveEvents();
+            boardCard.RemoveEvents();
         }
-
-        aiTurn();
+        drawCard(playerDeck, fromLocation, playerHand, removeCard); //draw a new card
     }
 
     public void aiTurn()
     {
         int playerHighestHitpointCard = 0;
-        Cards currentCard = null;
         Card playerCard = null;
-        foreach (Card card in field2) // player field
+        Card aiCard = null;
+        List<Card> playableAiCard = new List<Card>(); //store all ai card that can defeat player's card
+
+        //find the highest hp in player hand
+        foreach (Card card in playerHand)
         {
-            currentCard = App.UserRepo.GetCard(card.Name); //get the card data
-            if(currentCard.Hitpoint > playerHighestHitpointCard) //check if the attack is bigger than the player's card
+            Cards cardData = App.UserRepo.GetCard(card.Name); //get the card data
+
+            if(cardData.Hitpoint > playerHighestHitpointCard)
             {
-                playerHighestHitpointCard = currentCard.Hitpoint; //set it to the variable
+                playerHighestHitpointCard = cardData.Hitpoint;
                 playerCard = card;
             }
         }
 
-        List<Card> PlayableCardList = new List<Card>();
-
-        foreach(Card card in hand1)//ai hand 
+        //add any ai card that can defeat player card
+        foreach (Card card in aiHand) 
         {
-            Cards aiPlayableCard = App.UserRepo.GetCard(card.Name);// get the card data
-            if(aiPlayableCard.Attack > playerHighestHitpointCard) // check if aiCard's attack is higher than hp
+            Cards aiCardData = App.UserRepo.GetCard(card.Name);
+            if(aiCardData.Attack > playerHighestHitpointCard) //if attack is bigger
             {
-                PlayableCardList.Add(card); //add card to a list
-            }else if(aiPlayableCard.Hitpoint > playerHighestHitpointCard) //check if aiCard's hp is higher
+                playableAiCard.Add(card);
+            }else if(aiCardData.Hitpoint > playerHighestHitpointCard) //if hp is bigger
             {
-                PlayableCardList.Add(card); //add card to a list
+                playableAiCard.Add(card);
             }
         }
 
-        Card CardtoPlay = null; // empty card
-
-        foreach (Card card in PlayableCardList) 
+        foreach(Card card in playableAiCard)
         {
-            CardtoPlay = card; // set a card to it
-            if ((App.UserRepo.GetCard(CardtoPlay.Name).Attack) >= (App.UserRepo.GetCard(card.Name).Attack)) //compare the 2 card attack
+            aiCard = card;
+            int currentCardAtt = App.UserRepo.GetCard(aiCard.Name).Attack;
+            int cardInListAtt = App.UserRepo.GetCard(card.Name).Attack;
+            if(currentCardAtt >= cardInListAtt)
             {
-                CardtoPlay = card; //set it to CardtoPlay if card attack is lower, we dont want to play the strongest card
+                aiCard = card;
             }
-
         }
-        aiPlayCard(CardtoPlay);
-        attack(CardtoPlay, playerCard);
+
+        aiPlayCard(aiCard);//ai play the card
+
+        foreach (CardBoardSquare bs in CardBoard) //check each square for a card
+        {
+            bs.toggleCard();
+        }
+
     }
 
     public void aiPlayCard(Card card)
     {
         int[] moveUp = new int[2] { card.currentLocation[0], card.currentLocation[1] + 1 };
-        int[] currentlocation = new int[2] { card.currentLocation[0], card.currentLocation[1]};
+        int[] currentlocation = new int[2] { card.currentLocation[0], card.currentLocation[1] };
         CardBoardSquare fromSquare = IdentifyCardBoardSquare(currentlocation);
         CardBoardSquare toSquare = IdentifyCardBoardSquare(moveUp);
 
         card.currentLocation = toSquare.location; //move the card
 
-        drawCard(deck1, currentlocation, card.CardIndex, hand1);//add a new card and remove the old one
-        fromSquare.square.Source = deck1[0] + ".png";
+        fromSquare.square.Source = aiDeck[0].Name + ".png";
         toSquare.square.Source = card.Name + ".png";
         Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1], card.CardIndex);
-        field1.Add(newCard);
+        aiField.Add(newCard);
+        drawCard(aiDeck, currentlocation, aiHand, card);
     }
 
-    public void attack(Card attack, Card target)
-    {
-        Cards attacker = App.UserRepo.GetCard(attack.Name);
-        Cards defender = App.UserRepo.GetCard(target.Name);
-
-        if (attacker.Attack > defender.Hitpoint)
+    /*
+        public void attack(Card attack, Card target)
         {
-            deleteCard(target);
+            Cards attacker = App.UserRepo.GetCard(attack.Name);
+            Cards defender = App.UserRepo.GetCard(target.Name);
+
+            if (attacker.Attack > defender.Hitpoint)
+            {
+                deleteCard(target);
+            }
+            else if(attacker.Attack <= defender.Hitpoint)
+            {
+                deleteCard(attack);
+                deleteCard(target);
+            }
+
         }
-        else if(attacker.Attack <= defender.Hitpoint)
+
+        public void deleteCard(Card card)
         {
-            deleteCard(attack);
-            deleteCard(target);
-        }
+            CardBoardSquare square = IdentifyCardBoardSquare(card.currentLocation);
+            square.square.Source = null;
+            square.square.BackgroundColor = Color.FromRgb(255, 255, 255);
+            if (card.currentLocation[1] == 1)
+            {
+                field1.Remove(card);
+            }
+            if (card.currentLocation[1] == 2)
+            {
+                field2.Remove(card);
+            }
+        }*/
 
-    }
-
-    public void deleteCard(Card card)
+    public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand, Card removeThis)
     {
-        CardBoardSquare square = IdentifyCardBoardSquare(card.currentLocation);
-        square.square.Source = null;
-        square.square.BackgroundColor = Color.FromRgb(255, 255, 255);
-    }
+        //create new card
+        Card newCard = new Card(deck[0].Name, fromLocation[0], fromLocation[1], removeThis.CardIndex);
 
-    public void drawCard(List<String>deck, int[] location, int num, List<Card>hand)
-    {
-        Card newCard = new Card(deck[0],location[0], location[1], num);
-        hand.RemoveAt(num);
-        hand.Add(newCard);
-    }
+        hand.Remove(removeThis);//remove the old one
 
+        hand.Add(newCard);//add the new one to the same spot
+
+        deck.RemoveAt(0);//remove the first card from deck
+    }
     public CardBoardSquare IdentifyCardBoardSquare(int[] location)
     {
         foreach (CardBoardSquare square in CardBoard)
@@ -387,6 +369,10 @@ public partial class Zoo : ContentPage
             }
         }
         return null;
+    }
+    private void endUserTurn(object sender, EventArgs e)
+    {
+        aiTurn();
     }
 }
 
@@ -410,7 +396,8 @@ public class CardBoardSquare
     public ImageButton square;
     public int[] location = new int[2];
     public bool isActive = false;
-    public bool choosingForMove = false;
+    public bool chosenForMove = false;
+    public bool chosenForAttack = false;
     public int currentState = 0;
     public EventHandler DoToggle;
     public EventHandler DoMove;
@@ -421,61 +408,84 @@ public class CardBoardSquare
         location[0] = i;
         location[1] = j;
         square = sq;
-        TestActive();
+        toggleCard();
     }
-    public void TestActive()
+
+    public void toggleCard()
     {
-        if (Convert.ToString(square.Source).Length > 5)
+        if(Convert.ToString(square.Source).Length > 3) //if card have img
         {
             isActive = true;
-            if (location[1]==3)
+            if(checkCardLocation()) //check if card is in field or hand
             {
-                DefineCardClick();
+                DoToggle = (sender, args) =>
+                {
+                    Card currentCard = p.IdentifyCard(location); //get the clicked card
+                    if (currentState == 0 && (p.cardIsSelected == false))
+                    {
+                        square.Scale = 1.1;
+                        currentState = 1;
+                        p.cardIsSelected = true;
+                        checkMoveOrAttack(currentCard); //check if you can attack or move
+
+                    }
+                    else if (chosenForAttack || chosenForMove) //detoggle
+                    {
+                        chosenForMove = false;
+                        chosenForAttack = false;
+                        currentState = 0;
+                        p.cardIsSelected = false;
+                        square.Scale = 1;
+                    }
+                };
+                square.Clicked += DoToggle;
             }
         }
         else
         {
-            isActive = false;
-            DefineCardMove();
+            if (location[1] == 2)
+            {
+                emptySquare(); //if card doesn't have img, its empty
+            }
         }
     }
 
-    public void DefineCardClick()
+    public void emptySquare() 
     {
-        DoToggle = (sender, args) =>    //arrow function ~ lambda expression
-        {
-            Card currentCard = p.IdentifyCard(location); //get current card
-            if (currentState == 0 && (p.cardIsSelected == false))
+            DoMove = (sender, args) =>
             {
-                square.Scale = 1.1;
-                choosingForMove = true;
-                currentState = 1;   //toggle
-                p.cardIsSelected = true;               
-            }
-            else if (choosingForMove)
-            {
-                square.Scale = 1;
-                currentState = 0;
-                choosingForMove = false;
-                p.cardIsSelected = false;
-            }
-        };
-        square.Clicked += DoToggle;
+                if (Convert.ToString(square.BackgroundColor) == Convert.ToString(Color.FromRgb(255,255,255)) 
+                    || Convert.ToString(square.Source).Length == 0)
+                {
+                    currentState = 0;
+                    chosenForMove = false;
+                    p.cardIsSelected = false;
+                    square.BackgroundColor = Color.FromRgb(0, 0, 0);//black
+                    p.playerMoveCard(this); //this is the spot you clicked on
+                }
+            };
+            square.Clicked += DoMove;
     }
 
-    public void DefineCardMove()
+    public bool checkCardLocation()
     {
-        DoMove = (sender, args) =>
+        if (location[1] == 2 || location[1] == 3)
         {
-            if (Convert.ToString(square.BackgroundColor) == Convert.ToString(Color.FromRgb(255, 255, 255)))
-            {
-                currentState = 0;
-                choosingForMove = false;
-                p.cardIsSelected = false;
-                p.userTurn(this);
-            }
-        };
-        square.Clicked += DoMove;
+            return true;
+        }
+        return false;
+    }
+    public void checkMoveOrAttack(Card card)
+    {
+        if (card.currentLocation[1] == 3) //if card is in hand
+        {
+            chosenForMove = true;
+        }
+        else //if card is in field
+        {
+            chosenForAttack = true;
+            //attack(this);
+        }
     }
 
     public void RemoveEvents()
@@ -484,7 +494,3 @@ public class CardBoardSquare
         square.Clicked -= DoMove;
     }
 }
-
-
-
-
