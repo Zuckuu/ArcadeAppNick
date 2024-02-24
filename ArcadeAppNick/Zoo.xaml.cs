@@ -315,38 +315,47 @@ public partial class Zoo : ContentPage
         drawCard(aiDeck, currentlocation, aiHand, card);
     }
 
-    /*
-        public void attack(Card attack, Card target)
-        {
-            Cards attacker = App.UserRepo.GetCard(attack.Name);
-            Cards defender = App.UserRepo.GetCard(target.Name);
+    public void attack(Card attack, Card target)
+    {
+        Cards attacker = App.UserRepo.GetCard(attack.Name);
+        Cards defender = App.UserRepo.GetCard(target.Name);
 
-            if (attacker.Attack > defender.Hitpoint)
-            {
-                deleteCard(target);
-            }
-            else if(attacker.Attack <= defender.Hitpoint)
+        if(attacker.Attack > defender.Hitpoint)
+        {
+            deleteCard(target);
+        }
+        else 
+        {
+            if (attacker.Attack == defender.Hitpoint)
             {
                 deleteCard(attack);
                 deleteCard(target);
             }
+            else
+            {
+                deleteCard(attack);
+            }
+        }
+    }
 
+    public void deleteCard(Card card)
+    {
+        CardBoardSquare cardSquare = IdentifyCardBoardSquare(card.currentLocation);
+
+        //reset the card
+        cardSquare.square.Source = null; 
+        cardSquare.square.BackgroundColor = Color.FromRgb(255, 255, 255);
+
+        if (card.currentLocation[1] == 1)
+        {
+            aiField.Remove(card);
+        }
+        if (card.currentLocation[1] == 2)
+        {
+            playerField.Remove(card);
         }
 
-        public void deleteCard(Card card)
-        {
-            CardBoardSquare square = IdentifyCardBoardSquare(card.currentLocation);
-            square.square.Source = null;
-            square.square.BackgroundColor = Color.FromRgb(255, 255, 255);
-            if (card.currentLocation[1] == 1)
-            {
-                field1.Remove(card);
-            }
-            if (card.currentLocation[1] == 2)
-            {
-                field2.Remove(card);
-            }
-        }*/
+    }
 
     public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand, Card removeThis)
     {
@@ -484,7 +493,7 @@ public class CardBoardSquare
         else //if card is in field
         {
             chosenForAttack = true;
-            //attack(this);
+            //p.attack(card , this);
         }
     }
 
