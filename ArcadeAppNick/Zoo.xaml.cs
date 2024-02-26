@@ -247,6 +247,7 @@ public partial class Zoo : ContentPage
 
     public void aiTurn()
     {
+        int cardsInField = aiField.Count;
         int playerHighestHitpointCard = 0;
         Card playerCard = null;
         Card aiCard = null;
@@ -258,7 +259,7 @@ public partial class Zoo : ContentPage
         {
             Cards cardData = App.UserRepo.GetCard(card.Name); //get the card data
 
-            if(cardData.Hitpoint > playerHighestHitpointCard)
+            if (cardData.Hitpoint > playerHighestHitpointCard)
             {
                 playerHighestHitpointCard = cardData.Hitpoint;
                 playerCard = card;
@@ -266,35 +267,45 @@ public partial class Zoo : ContentPage
         }
 
         //add any ai card that can defeat player card
-        foreach (Card card in aiHand) 
+        foreach (Card card in aiHand)
         {
             Cards aiCardData = App.UserRepo.GetCard(card.Name);
-            if(aiCardData.Attack > playerHighestHitpointCard) //if attack is bigger
+            if (aiCardData.Attack > playerHighestHitpointCard) //if attack is bigger
             {
                 playableAiCard.Add(card);
-            }else
+            }
+            else
             {
                 //if hp is bigger
                 if (aiCardData.Hitpoint > playerHighestHitpointCard)
                 {
                     playableAiCard.Add(card);
-                }            
+                }
             }
         }
 
-        foreach(Card card in playableAiCard)
+        foreach (Card card in playableAiCard)
         {
             aiCard = card;
             int currentCardAtt = App.UserRepo.GetCard(aiCard.Name).Attack;
             int cardInListAtt = App.UserRepo.GetCard(card.Name).Attack;
-            if(currentCardAtt <= cardInListAtt)
+            if (currentCardAtt >= cardInListAtt)
             {
                 aiCard = card;
             }
         }
 
-       
-        aiPlayCard(aiCard);//ai play the card
+
+
+        if (cardsInField < 2)
+        {
+            aiPlayCard(aiCard);//ai play the card
+        }else
+        {
+            //aiAttack();
+        }
+
+        
         
 
 
@@ -386,7 +397,7 @@ public partial class Zoo : ContentPage
 
         foreach (CardBoardSquare boardCard in CardBoard) //remove all event in on the board
         {
-            boardCard.RemoveEvents();
+            boardCard.toggleCard();
         }
 
     }
