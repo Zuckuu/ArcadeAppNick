@@ -83,14 +83,14 @@ public partial class Zoo : ContentPage
                 if (j == 0)//adding to aihand
                 {
                     sq.Source = aiDeck[i].Name + ".png";
-                    Card newCard = new Card(aiDeck[i].Name,i, j, i);
+                    Card newCard = new Card(aiDeck[i].Name,i, j);
                     aiHand.Add(newCard); //add card to hand
                     aiDeck.RemoveAt(i); //remove card from deck
                 }
                 if(j == 3)//adding to player
                 {
                     sq.Source = playerDeck[i].Name + ".png";
-                    Card newCard = new Card(playerDeck[i].Name, i, j, i);
+                    Card newCard = new Card(playerDeck[i].Name, i, j);
                     playerHand.Add(newCard);
                     playerDeck.RemoveAt(i);
                 }
@@ -114,7 +114,7 @@ public partial class Zoo : ContentPage
             int randNum = rand.Next(commonList.Count);
             string name = commonList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            Card newCard = new Card(result.Name, 0, 0, 0);
+            Card newCard = new Card(result.Name, 0, 0);
             deck.Add(newCard);
             deckIndexNum++;
         }
@@ -124,7 +124,7 @@ public partial class Zoo : ContentPage
             int randNum = rand.Next(rareList.Count);
             string name = rareList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            Card newCard = new Card(result.Name, 0, 0, 0);
+            Card newCard = new Card(result.Name, 0, 0);
             deck.Add(newCard);
             deckIndexNum++;
         }
@@ -134,7 +134,7 @@ public partial class Zoo : ContentPage
             int randNum = rand.Next(legendaryList.Count);
             string name = legendaryList[randNum];
             Cards result = App.UserRepo.GetCard(name);
-            Card newCard = new Card(result.Name, 0, 0, 0);
+            Card newCard = new Card(result.Name, 0, 0);
             deck.Add(newCard);
             deckIndexNum++;
         }
@@ -210,7 +210,6 @@ public partial class Zoo : ContentPage
     public void playerMoveCard(CardBoardSquare newSquare) 
     {
         newSquare.isActive = true; //this square will now be active
-        Card removeCard = null; //this will be a card that gets remove
         int[] fromLocation = new int[2];
         foreach(CardBoardSquare boardCard in CardBoard)
         {
@@ -229,7 +228,6 @@ public partial class Zoo : ContentPage
                         newSquare.square.Source = card.Name + ".png"; //set the image to new square
 
                         playerField.Add(card);//add the card to field
-                        removeCard = card; //set the card for removal from hand
                     }
                 }
 
@@ -244,7 +242,7 @@ public partial class Zoo : ContentPage
         {
             boardCard.RemoveEvents();
         }
-        drawCard(playerDeck, fromLocation, playerHand, removeCard); //draw a new card
+        drawCard(playerDeck, fromLocation, playerHand); //draw a new card
     }
 
     public void aiTurn()
@@ -307,20 +305,28 @@ public partial class Zoo : ContentPage
 
     }
 
-    public void aiPlayCard(Card card)
+    public void aiPlayCard(Card card) //we need to check if the location already have a card, if so then either play it to the left or right
     {
         int[] moveUp = new int[2] { card.currentLocation[0], card.currentLocation[1] + 1 };
         int[] currentlocation = new int[2] { card.currentLocation[0], card.currentLocation[1] };
         CardBoardSquare fromSquare = IdentifyCardBoardSquare(currentlocation);
         CardBoardSquare toSquare = IdentifyCardBoardSquare(moveUp);
 
+        if(Convert.ToString(toSquare.square.Source).Length > 2)// check if the square have an image
+        {
+            CardBoardSquare toSquareLeft = IdentifyCardBoardSquare(moveUp);
+            CardBoardSquare toSquareRight = IdentifyCardBoardSquare(moveUp);
+
+
+        }
+
         card.currentLocation = toSquare.location; //move the card
 
         fromSquare.square.Source = aiDeck[0].Name + ".png";
         toSquare.square.Source = card.Name + ".png";
-        Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1], card.CardIndex);
+        Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1]);
         aiField.Add(newCard);
-        drawCard(aiDeck, currentlocation, aiHand, card);
+        drawCard(aiDeck, currentlocation, aiHand);
     }
 
     public void attack(Card attack, Card target)
@@ -365,12 +371,10 @@ public partial class Zoo : ContentPage
 
     }
 
-    public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand, Card removeThis)
+    public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand)
     {
         //create new card
-        Card newCard = new Card(deck[0].Name, fromLocation[0], fromLocation[1], removeThis.CardIndex);
-
-        hand.Remove(removeThis);//remove the old one
+        Card newCard = new Card(deck[0].Name, fromLocation[0], fromLocation[1]);
 
         hand.Add(newCard);//add the new one to the same spot
 
@@ -397,13 +401,11 @@ public class Card
 {
     public int[] currentLocation = new int[2];
     public string Name;
-    public int CardIndex;
-    public Card(string name,int i, int j, int num)
+    public Card(string name,int i, int j)
     {
         Name = name;
         currentLocation[0] = i;//col
         currentLocation[1] = j;//row
-        CardIndex = num;
     }
 }
 
