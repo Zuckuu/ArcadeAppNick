@@ -308,25 +308,46 @@ public partial class Zoo : ContentPage
     public void aiPlayCard(Card card) //we need to check if the location already have a card, if so then either play it to the left or right
     {
         int[] moveUp = new int[2] { card.currentLocation[0], card.currentLocation[1] + 1 };
+        int[] moveUpRight = new int[2] { card.currentLocation[0] + 1, card.currentLocation[1] + 1 };
+        int[] moveUpLeft = new int[2] { card.currentLocation[0] - 1, card.currentLocation[1] + 1 };
         int[] currentlocation = new int[2] { card.currentLocation[0], card.currentLocation[1] };
         CardBoardSquare fromSquare = IdentifyCardBoardSquare(currentlocation);
         CardBoardSquare toSquare = IdentifyCardBoardSquare(moveUp);
 
-        if(Convert.ToString(toSquare.square.Source).Length > 2)// check if the square have an image
+        if (Convert.ToString(toSquare.square.Source).Length > 2)// check if the square have an image
         {
-            CardBoardSquare toSquareLeft = IdentifyCardBoardSquare(moveUp);
-            CardBoardSquare toSquareRight = IdentifyCardBoardSquare(moveUp);
+            CardBoardSquare toSquareLeft = IdentifyCardBoardSquare(moveUpLeft);
 
-
+            if (Convert.ToString(toSquareLeft.square.Source).Length > 2)
+            {
+                CardBoardSquare toSquareRight = IdentifyCardBoardSquare(moveUpRight);
+                card.currentLocation = toSquareRight.location;
+                fromSquare.square.Source = aiDeck[0].Name + ".png";
+                toSquareRight.square.Source = card.Name + ".png";
+                Card newCard = new Card(card.Name, toSquareRight.location[0], toSquareRight.location[1]);
+                aiField.Add(newCard);
+            }
+            else
+            {
+                card.currentLocation = toSquareLeft.location;
+                fromSquare.square.Source = aiDeck[0].Name + ".png";
+                toSquareLeft.square.Source = card.Name + ".png";
+                Card newCard = new Card(card.Name, toSquareLeft.location[0], toSquareLeft.location[1]);
+                aiField.Add(newCard);
+            }
+        }
+        else
+        {
+            card.currentLocation = toSquare.location; //move the card
+            fromSquare.square.Source = aiDeck[0].Name + ".png";
+            toSquare.square.Source = card.Name + ".png";
+            Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1]);
+            aiField.Add(newCard);
         }
 
-        card.currentLocation = toSquare.location; //move the card
 
-        fromSquare.square.Source = aiDeck[0].Name + ".png";
-        toSquare.square.Source = card.Name + ".png";
-        Card newCard = new Card(card.Name, toSquare.location[0], toSquare.location[1]);
-        aiField.Add(newCard);
         drawCard(aiDeck, currentlocation, aiHand);
+
     }
 
     public void attack(Card attack, Card target)
