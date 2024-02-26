@@ -348,9 +348,50 @@ public partial class Zoo : ContentPage
 
         drawCard(aiDeck, currentlocation, aiHand);
 
+        foreach(CardBoardSquare square in CardBoard)
+        {
+            square.enemyCard();
+        }   
     }
 
-    public void attack(Card attack, Card target)
+    public void attackThis(CardBoardSquare targetBoard)
+    {
+        int[] targetLocation = new int[2] { targetBoard.location[0], targetBoard.location[1]};
+
+        Card target = IdentifyCard(targetLocation);
+
+        Cards targetData = App.UserRepo.GetCard(target.Name);
+
+        foreach(CardBoardSquare playerCard in CardBoard)
+        {
+            if (playerCard.chosenForAttack)
+            {
+                Card attacker = IdentifyCard(playerCard.location);
+
+                Cards attackerData = App.UserRepo.GetCard(attacker.Name);
+
+                if(attackerData.Attack > targetData.Hitpoint)
+                {
+                    deleteCard(target);
+                }
+                if(attackerData.Hitpoint < targetData.Attack)
+                {
+                    deleteCard(attacker);
+                }
+
+                playerCard.square.Scale = 1;
+               
+            }
+        }
+
+        foreach (CardBoardSquare boardCard in CardBoard) //remove all event in on the board
+        {
+            boardCard.RemoveEvents();
+        }
+
+    }
+
+    public void aiAttack(Card attack, Card target)
     {
         Cards attacker = App.UserRepo.GetCard(attack.Name);
         Cards defender = App.UserRepo.GetCard(target.Name);
@@ -392,7 +433,7 @@ public partial class Zoo : ContentPage
 
     }
 
-    public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand)
+    public void drawCard(List<Card> deck, int[] fromLocation, List<Card> hand) //draws a new card 
     {
         //create new card
         Card newCard = new Card(deck[0].Name, fromLocation[0], fromLocation[1]);
@@ -411,11 +452,11 @@ public partial class Zoo : ContentPage
             }
         }
         return null;
-    }
+    } //finds the boardSquare
     private void endUserTurn(object sender, EventArgs e)
     {
         aiTurn();
-    }
+    } // ends the player turn
 }
 
 public class Card
@@ -441,6 +482,7 @@ public class CardBoardSquare
     public int currentState = 0;
     public EventHandler DoToggle;
     public EventHandler DoMove;
+    public EventHandler CanAttack;
 
     public CardBoardSquare(Zoo page, ImageButton sq, int i, int j)
     {
@@ -487,6 +529,10 @@ public class CardBoardSquare
             {
                 emptySquare(); //if card doesn't have img, its empty
             }
+            if (location[1] == 1)
+            {
+                enemyCard();
+            }
         }
     }
 
@@ -507,6 +553,21 @@ public class CardBoardSquare
             square.Clicked += DoMove;
     }
 
+    public void enemyCard()
+    {
+        CanAttack = (sender, args) =>
+        {
+            if(Convert.ToString(square.Source).Length > 1)
+            {
+                currentState = 0;
+                chosenForAttack = false;
+                p.cardIsSelected = false;
+                p.attackThis(this);
+            }
+        };
+        square.Clicked += CanAttack;
+    }
+
     public bool checkCardLocation()
     {
         if (location[1] == 2 || location[1] == 3)
@@ -524,7 +585,6 @@ public class CardBoardSquare
         else //if card is in field
         {
             chosenForAttack = true;
-            //p.attack(card , this);
         }
     }
 
