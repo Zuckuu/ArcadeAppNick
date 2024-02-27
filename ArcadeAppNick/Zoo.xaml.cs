@@ -249,7 +249,8 @@ public partial class Zoo : ContentPage
     {
         int cardsInField = aiField.Count;
         int playerHighestHitpointCard = 0;
-        Card playerCard = null;
+        Cards playerCard = null;
+        Card target = null;
         Card aiCard = null;
         bool endTurn = false;
         List<Card> playableAiCard = new List<Card>(); //store all ai card that can defeat player's card
@@ -257,12 +258,12 @@ public partial class Zoo : ContentPage
         //find the highest hp in player field
         foreach (Card card in playerField)
         {
-            Cards cardData = App.UserRepo.GetCard(card.Name); //get the card data
+            playerCard = App.UserRepo.GetCard(card.Name); //get the card data
 
-            if (cardData.Hitpoint > playerHighestHitpointCard)
+            if (playerCard.Hitpoint > playerHighestHitpointCard)
             {
-                playerHighestHitpointCard = cardData.Hitpoint;
-                playerCard = card;
+                playerHighestHitpointCard = playerCard.Hitpoint;
+                target = card;
             }
         }
 
@@ -302,12 +303,16 @@ public partial class Zoo : ContentPage
             aiPlayCard(aiCard);//ai play the card
         }else
         {
-            //aiAttack();
+            foreach(Card card in aiField)
+            {
+                Cards cardData = App.UserRepo.GetCard(card.Name);
+
+                if(cardData.Attack > playerCard.Hitpoint)
+                {
+                    aiAttack(card, target);
+                }
+            }
         }
-
-        
-        
-
 
         foreach (CardBoardSquare bs in CardBoard) //check each square for a card
         {
