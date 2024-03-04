@@ -52,10 +52,16 @@ public partial class Zoo : ContentPage
     public int currentTurn = 0;
     public bool cardIsSelected = false;
     public static Random shuffleNum = new Random();
+
+    public int playerHealthN = 10;
+    public int aiHealthN = 10;
     public Zoo()
 	{
 		InitializeComponent();
         AddDatabase();
+
+        playerHealth.Text = playerHealthN.ToString();
+        aiHealth.Text = aiHealthN.ToString();
 
     }
     public void createBoard()
@@ -441,10 +447,14 @@ public partial class Zoo : ContentPage
         if (card.currentLocation[1] == 1)
         {
             aiField.Remove(card);
+            aiHealthN--;
+            updateHealth(aiHealthN, playerHealthN);
         }
         if (card.currentLocation[1] == 2)
         {
             playerField.Remove(card);
+            playerHealthN--;
+            updateHealth(aiHealthN, playerHealthN);
         }
 
     }
@@ -473,6 +483,12 @@ public partial class Zoo : ContentPage
     {
         aiTurn();
     } // ends the player turn
+
+    public void updateHealth(int aH, int pH)
+    {
+        playerHealth.Text = pH.ToString();
+        aiHealth.Text = aH.ToString();
+    }
 }
 
 public class Card
