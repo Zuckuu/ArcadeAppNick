@@ -167,7 +167,7 @@ public partial class Zoo : ContentPage
         App.UserRepo.AddCard("rat","rat.png", 50, 1, "rare");
         App.UserRepo.AddCard("seal","seal.png", 20, 20, "rare");
         App.UserRepo.AddCard("shark","shark.png", 35, 20, "rare");
-        App.UserRepo.AddCard("tiger","tiger.png", 25, 30, "rare");
+        App.UserRepo.AddCard("tiger","tiger.png", 30, 25, "rare");
         App.UserRepo.AddCard("vampire_bat","vampire_bat.png", 50, 25, "rare");
         //legendary
         App.UserRepo.AddCard("blue_whale","blue_whale.png", 5, 200, "legendary");
@@ -197,6 +197,20 @@ public partial class Zoo : ContentPage
                 return card;
             }
         }
+        foreach (Card card in playerField)
+        {
+            if (card.Spot == spot && card.Location == location)
+            {
+                return card;
+            }
+        }
+        foreach (Card card in aiField)
+        {
+            if (card.Spot == spot && card.Location == location)
+            {
+                return card;
+            }
+        }
         return null;
     }
 
@@ -214,7 +228,6 @@ public partial class Zoo : ContentPage
 
     public void playerMoveCard(CardBoardSquare newSpot)
     {
-        newSpot.isActive = true;
         int index = 0;
         foreach(CardBoardSquare boardCard in CardBoard)
         {
@@ -227,7 +240,6 @@ public partial class Zoo : ContentPage
                     {
                         newSpot.square.Source = playerHand[x].Name + ".png";
                         newSpot.emtpy = false;
-                        newSpot.canAttack();
                         playerHand[x].Location = "playerField";
                         playerHand[x].Spot = index;
                         playerField.Add(playerHand[x]);
@@ -241,6 +253,7 @@ public partial class Zoo : ContentPage
                 playerDeck.RemoveAt(0);
                 boardCard.square.Scale = 1;
                 boardCard.chosenForMove = false;
+                boardCard.emtpy = false;
             }
         }
         foreach(CardBoardSquare boardCard in CardBoard)
@@ -249,8 +262,18 @@ public partial class Zoo : ContentPage
         }
     }
 
-    public void playerAttack(CardBoardSquare targetSq, Card attackerCard)
+    public void playerAttack(CardBoardSquare targetSq)
     {
+        Card attackerCard = null;
+        foreach (CardBoardSquare attacker in CardBoard)
+        {
+            if (attacker.chosenForAttack)
+            {
+                attackerCard = IdentifyCard(attacker.spot, "playerField");
+                attacker.square.Scale = 1;
+            }
+        }
+
         Card targetCard = IdentifyCard(targetSq.spot, "aiField");
         Cards targetData = App.UserRepo.GetCard(targetCard.Name);
         Cards attackerData = App.UserRepo.GetCard(attackerCard.Name);
@@ -271,6 +294,11 @@ public partial class Zoo : ContentPage
                 deteleCard(attackerCard);
             }
         }
+        foreach (CardBoardSquare boardCard in CardBoard)
+        {
+            boardCard.RemoveEvents();
+        }
+
     }
 
     public void aiTurn()
@@ -415,7 +443,7 @@ public partial class Zoo : ContentPage
         Card newCard = aiDeck[0];
         newCard.Location = "aiHand";
         fromSquare.square.Source = aiDeck[0].Name + ".png";
-        aiHand[index]  = newCard;
+        aiHand.Add(newCard);
         aiDeck.RemoveAt(0);
     }
     
@@ -444,7 +472,6 @@ public class CardBoardSquare
     public ImageButton square;
     public int spot = 0;
     public string location;
-    public bool isActive = false;
     public bool chosenForMove = false;
     public bool chosenForAttack = false;
     public bool emtpy = true;
@@ -466,91 +493,75 @@ public class CardBoardSquare
     {
         if(emtpy == false)
         {
-            isActive = true;
-            if (location == "playerHand")
+            if (location == "playerHand" || location == "playerField")
             {
                 DoToggle = (sender, args) =>
-                {
-                    if (currentState == 0 && (p.cardIsSelected == false))
-                    {
-                        square.Scale = 1.1;
-                        currentState = 1;
-                        p.cardIsSelected = true;
-                        chosenForMove = true;
-                    }
-                    else if(chosenForMove)
-                    {
-                        square.Scale = 1;
-                        currentState = 0;
-                        p.cardIsSelected = false;
-                        chosenForMove = false;
-                    }
-                };
-                square.Clicked += DoToggle;
-            }
-        }
-        else
-        {
-            if (location == "playerField")
-            {
-                DoMove = (sender, args) =>
-                {
-                    if (Convert.ToString(square.Source).Length == 0)
-                    {
-                        currentState = 0;
-                        chosenForMove = false;
-                        p.cardIsSelected = false;
-                        p.playerMoveCard(this); //this is the spot you clicked on 
-                    }
-                };
-                square.Clicked += DoMove;
-            }
-        }
-    }
-    public void canAttack()
-    {
-        if (emtpy == false)
-        {
-            if(location == "playerField")
-            {
-                DoToggle = (sender, arg) =>
                 {
                     if (currentState == 0 && p.cardIsSelected == false)
                     {
                         square.Scale = 1.1;
                         currentState = 1;
                         p.cardIsSelected = true;
-                        chosenForAttack = true;
-
-                    }else if (chosenForAttack)
+                        if(location == "playerHand")
+                        {
+                            chosenForMove = true;
+                        }
+                        if(location == "playerField")
+                        {
+                            chosenForAttack = true;
+                        }
+                    }
+                    else if(chosenForMove || chosenForAttack)
                     {
                         square.Scale = 1;
                         currentState = 0;
                         p.cardIsSelected = false;
+                        chosenForMove = false;
                         chosenForAttack = false;
                     }
                 };
                 square.Clicked += DoToggle;
-            }
-        }else
+            } 
+        }
+        else
         {
-            if(location == "aiField")
-            {
-                CanAttack = (sender, args) =>
-                {
-                    Card currentCard = p.IdentifyCard(spot, "playerField");
-                    if (Convert.ToString(square.Source).Length > 0)
-                    {
-                        currentState = 0;
-                        chosenForAttack = false;
-                        p.cardIsSelected = false;
-                        p.playerAttack(this, currentCard);
-                    }
-                };
-                square.Clicked += CanAttack;
-            }
+            MoveCard();
         }
     }
+
+    public void MoveCard()
+    {
+        if (location == "playerField")
+        {
+            DoMove = (sender, args) =>
+            {
+                if (Convert.ToString(square.Source).Length == 0)
+                {
+                    currentState = 0;
+                    chosenForMove = false;
+                    p.cardIsSelected = false;
+                    p.playerMoveCard(this);
+                }
+            };
+            square.Clicked += DoMove;
+        }
+        else
+        {
+            CanAttack = (sender, args) =>
+            {
+                if (Convert.ToString(square.Source).Length > 0)
+                {
+                    currentState = 0;
+                    chosenForAttack = false;
+                    p.cardIsSelected = false;
+                    p.playerAttack(this);
+                }
+            };
+            square.Clicked += CanAttack;
+
+        }
+    }
+ 
     public void RemoveEvents()
     {
         square.Clicked -= DoToggle; // Remove current toggle
