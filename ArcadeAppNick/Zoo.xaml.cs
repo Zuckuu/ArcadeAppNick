@@ -228,11 +228,13 @@ public partial class Zoo : ContentPage
 
     public void playerMoveCard(CardBoardSquare newSpot)
     {
+        int count = 0;
         int index = 0;
         foreach(CardBoardSquare boardCard in CardBoard)
         {
             if(boardCard.chosenForMove && boardCard.location == "playerHand")
             {
+                count++;
                 index = boardCard.spot;
                 for(int x = 0; x < playerHand.Count; x++)
                 {
@@ -248,11 +250,14 @@ public partial class Zoo : ContentPage
                 }
                 Card newCard = playerDeck[0];
                 newCard.Location = "playerHand";
+                newCard.Spot = index;
                 playerHand.Add(newCard);
-                boardCard.square.Source = playerDeck[0].Name + ".png"; //add a new card img to the old spot
+                boardCard.square.Source = playerDeck[0].Name + ".png";
                 playerDeck.RemoveAt(0);
                 boardCard.square.Scale = 1;
                 boardCard.chosenForMove = false;
+                cardIsSelected = false;
+                boardCard.currentState = 0;
                 boardCard.emtpy = false;
             }
         }
@@ -260,6 +265,7 @@ public partial class Zoo : ContentPage
         {
             boardCard.RemoveEvents();
         }
+        checkWinner();
     }
 
     public void playerAttack(CardBoardSquare targetSq)
@@ -278,18 +284,18 @@ public partial class Zoo : ContentPage
         Cards targetData = App.UserRepo.GetCard(targetCard.Name);
         Cards attackerData = App.UserRepo.GetCard(attackerCard.Name);
 
-        if(attackerData.Hitpoint < targetData.Attack && targetData.Hitpoint < attackerData.Attack)
+        if(attackerData.Hitpoint <= targetData.Attack && targetData.Hitpoint <= attackerData.Attack)
         {
             deteleCard(targetCard);
             deteleCard(attackerCard);
         }
         else
         {
-            if(targetData.Hitpoint < attackerData.Attack)
+            if(targetData.Hitpoint <= attackerData.Attack)
             {
                 deteleCard(targetCard);
             }
-            else if (attackerData.Hitpoint < targetData.Attack)
+            else if (attackerData.Hitpoint <= targetData.Attack)
             {
                 deteleCard(attackerCard);
             }
@@ -298,13 +304,13 @@ public partial class Zoo : ContentPage
         {
             boardCard.RemoveEvents();
         }
-
+        checkWinner();
     }
 
     public void aiTurn()
     {
         int cardsInField = aiField.Count;
-        int playerLowestHitpointCard = 0;
+        int playerLowestHitpointCard = 201;
         Cards playerCard = null;
         Card target = null;
         Card Temp = null;
@@ -313,7 +319,7 @@ public partial class Zoo : ContentPage
         foreach (Card card in playerField)
         {
             playerCard = App.UserRepo.GetCard(card.Name); //get the card data
-            if (playerCard.Hitpoint > playerLowestHitpointCard)
+            if (playerCard.Hitpoint < playerLowestHitpointCard)
             {
                 playerLowestHitpointCard = playerCard.Hitpoint;
                 target = card;
@@ -343,7 +349,7 @@ public partial class Zoo : ContentPage
             }
         }
 
-        if (cardsInField < 2)
+        if (cardsInField < 2 || playerField.Count == 0)
         {
             Temp = playableAiCard[0];
             foreach (Card card in playableAiCard)
@@ -374,36 +380,45 @@ public partial class Zoo : ContentPage
                 aiAttack(Temp, target);
             }
         }
-
-        foreach (CardBoardSquare bs in CardBoard)
+        List<CardBoardSquare> ignoreList = new List<CardBoardSquare>();
+       foreach (CardBoardSquare bs in CardBoard)
         {
-            if(bs.location == "playerHand" || bs.location == "playerField")
+            
+            if(bs.location == "playerField" && bs.emtpy == false)
             {
-                bs.toggleCard();
+                CardBoardSquare ignoreCard = IdentifyCardBoardSquare(bs.spot, "playerHand");
+                ignoreList.Add(ignoreCard); 
             }
+            bs.toggleCard(); 
         }
+        foreach (CardBoardSquare ignore in ignoreList)
+        {
+            ignore.RemoveEvents(); 
+        }
+        checkWinner();
     }
 
     public void aiAttack(Card attacker, Card target)
     {
         Cards ATTACKER = App.UserRepo.GetCard(attacker.Name);
         Cards TARGET = App.UserRepo.GetCard(target.Name);
-        if(ATTACKER.Attack > TARGET.Hitpoint && ATTACKER.Hitpoint > TARGET.Attack)
+        if(ATTACKER.Attack >= TARGET.Hitpoint && ATTACKER.Hitpoint <= TARGET.Attack)
         {
             deteleCard(target);
+            deteleCard(attacker);
         }
         else 
         {
-            if (ATTACKER.Attack > TARGET.Hitpoint && ATTACKER.Hitpoint < TARGET.Attack)
+            if (ATTACKER.Attack >= TARGET.Hitpoint)
             {
-                deteleCard(attacker);
                 deteleCard(target);
             }
-            else
+            else if(TARGET.Attack >= ATTACKER.Hitpoint)
             {
                 deteleCard(attacker);
             }
         }
+        checkWinner();
     }
 
     public void deteleCard(Card card)
@@ -413,7 +428,7 @@ public partial class Zoo : ContentPage
         {
             square = IdentifyCardBoardSquare(card.Spot, "aiField");
             square.square.Source = null;
-            square.emtpy = false;
+            square.emtpy = true;
             aiField.Remove(card);
             aiHealthN--;
             aiHealth.Text = aiHealthN.ToString();
@@ -422,11 +437,13 @@ public partial class Zoo : ContentPage
         {
             square = IdentifyCardBoardSquare(card.Spot, "playerField");
             square.square.Source = null;
-            square.emtpy = false;
+            square.emtpy = true;
             playerField.Remove(card);
             playerHealthN--;
             playerHealth.Text = playerHealthN.ToString();
         }
+
+
     }
 
     public void aiPlayCard(Card card)
@@ -434,21 +451,69 @@ public partial class Zoo : ContentPage
         CardBoardSquare fromSquare = IdentifyCardBoardSquare(card.Spot, "aiHand");
         CardBoardSquare moveSquare = IdentifyCardBoardSquare(card.Spot, "aiField");
         int index = fromSquare.spot;
+        aiHand.Remove(IdentifyCard(card.Spot, "aiHand"));
         card.Location = "aiField";
         aiField.Add(card);
         moveSquare.square.Source = card.Name + ".png";
         moveSquare.emtpy = false;
 
-        aiHand.Remove(IdentifyCard(card.Spot, "aiHand"));
         Card newCard = aiDeck[0];
         newCard.Location = "aiHand";
+        newCard.Spot = index;
         fromSquare.square.Source = aiDeck[0].Name + ".png";
         aiHand.Add(newCard);
         aiDeck.RemoveAt(0);
     }
+
+    public void checkWinner()
+    {
+        if(aiField.Count == 5 || playerField.Count == 5)
+        {
+            foreach(CardBoardSquare bs in CardBoard)
+            {
+                bs.RemoveEvents();
+                bs.square.IsEnabled = false;
+            }
+            if(aiField.Count == 5)
+            {
+                endTurnButton.Text = "AI WINS!";
+            }
+            else
+            {
+                endTurnButton.Text = "YOU WINS!";
+
+            }
+            endTurnButton.IsEnabled = false;
+        }
+        if(playerHealthN == 0 || aiHealthN == 0)
+        {
+            foreach (CardBoardSquare bs in CardBoard)
+            {
+                bs.RemoveEvents();
+                bs.square.IsEnabled = false;
+            }
+            if (playerHealthN == 0)
+            {
+                endTurnButton.Text = "Ai WINS!";
+            }
+            else
+            {
+                endTurnButton.Text = "YOU WINS!";
+
+            }
+            endTurnButton.IsEnabled = false;
+        }
+    }
     
     private void endTurn(object sender, EventArgs e)
     {
+        if(playerField.Count == 0)
+        {
+            foreach(CardBoardSquare bs in CardBoard)
+            {
+                bs.RemoveEvents();
+            }
+        }
         aiTurn();
     }
 }
@@ -558,7 +623,6 @@ public class CardBoardSquare
                 }
             };
             square.Clicked += CanAttack;
-
         }
     }
  

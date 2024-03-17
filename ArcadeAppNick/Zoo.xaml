@@ -111,6 +111,7 @@
                     BackgroundColor="LightPink"
                     x:Name="aiHealth"/>
             <Button Text="End Turn" 
+                    x:Name="endTurnButton"
                     WidthRequest="100" 
                     HeightRequest="50" 
                     BackgroundColor="DarkRed" 
